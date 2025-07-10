@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -24,6 +23,35 @@
         }
         .theory-content strong {
             font-weight: 600;
+        }
+        /* Custom styles for gradients and shadows */
+        .gradient-text {
+            background-image: linear-gradient(to right, var(--tw-gradient-stops));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .shadow-text-light {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .shadow-text-dark {
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+        .card-icon {
+            font-size: 4rem; /* Larger icons */
+            margin-bottom: 1.25rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card-div:hover .card-icon {
+            transform: scale(1.1);
+        }
+        .feedback-animation {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -97,54 +125,33 @@
         const courses = [
             { id: 'matematicas', name: 'Matemáticas', description: 'Explora el mundo de los números y la lógica. 🔢' },
             { id: 'comunicacion', name: 'Comunicación', description: 'Mejora tus habilidades de expresión oral y escrita. 🗣️✍️' },
-            { id: 'cyt', name: 'Ciencia y Tecnología', description: 'Descubre los principios de la ciencia y los avances tecnológicos. 🔬💡' },
             { id: 'ingles', name: 'Inglés', description: 'Aprende un nuevo idioma y abre nuevas oportunidades. 🇬🇧🇺🇸' },
-            { id: 'arte', name: 'Arte', description: 'Explora la creatividad, técnicas y la historia del arte. 🎨🖌️' },
-            { id: 'computo', name: 'Cómputo', description: 'Descubre los fundamentos de la informática y la programación. 💻🤖' }, // New Computo Course
+            { id: 'minijuegos', name: 'Minijuegos', description: '¡Diviértete con nuestros minijuegos aquí! 🎮', isExternal: true, url: 'https://cristopher-campos.github.io/chisfuerzo-minijuegos/' },
         ];
 
         const courseContent = {
             matematicas: {
                 basico: {
                     theory: `
-                        <p class="mb-6">En el nivel Básico de Matemáticas ➕, te familiarizarás con los pilares fundamentales: los números, las operaciones básicas y las formas geométricas elementales. Este nivel te proporciona las herramientas esenciales para el razonamiento cuantitativo y la resolución de problemas cotidianos. Es el cimiento sobre el cual se construye todo el conocimiento matemático posterior.</p>
+                        <p class="mb-6">En el nivel Básico de Matemáticas ➕, te familiarizarás con los pilares fundamentales: los números, las operaciones básicas y las formas geométricas elementales. Es el cimiento sobre el cual se construye todo el conocimiento matemático posterior.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Rama: Aritmética 🔢 - Los Fundamentos Numéricos</h4>
-                            <p class="mb-2">La aritmética es la rama más básica y fundamental de las matemáticas, centrada en las operaciones con números. Es la base sobre la que se construyen todas las demás ramas, permitiéndonos cuantificar y comparar elementos en el mundo real.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Aritmética 🔢</h4>
+                            <p class="mb-2">La aritmética se centra en las operaciones con números.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Números Naturales y Enteros:</strong>
-                                <p>Los números naturales ($\mathbb{N} = \{1, 2, 3, \dots\}$) son los que usamos para contar y ordenar elementos. Son infinitos y se utilizan en situaciones donde no hay cantidades negativas ni fraccionarias. Los números enteros ($\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$) incluyen los naturales, el cero y los números negativos. Son esenciales para representar cantidades completas, como temperaturas bajo cero, deudas, o niveles por debajo de un punto de referencia. 🥶</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Si tienes 5 manzanas 🍎 y te comes 2, te quedan 3. Esto se representa con números naturales. Si la temperatura es de $5^\circ C$ y baja $7^\circ C$, la nueva temperatura es $-2^\circ C$, un número entero negativo.</p>
-                            </li>
-                            <li><strong>Operaciones Básicas:</strong>
-                                <ul class="list-circle list-inside ml-8">
-                                <li><strong>Suma y Resta:</strong> La suma es la operación de combinar cantidades (ej. $7 + 4 = 11$). Es conmutativa ($a+b=b+a$) y asociativa ($(a+b)+c=a+(b+c)$). La resta es la operación inversa de la suma, utilizada para quitar cantidades o encontrar diferencias (ej. $11 - 4 = 7$).
-                                <p class="mt-1"><em>Ejemplo:</em> Si tienes 10 caramelos 🍬 y regalas 3, te quedan $10 - 3 = 7$ caramelos. Si sumas 5 euros y 3 euros, tienes 8 euros.</p></li>
-                                <li><strong>Multiplicación y División:</strong> La multiplicación es una suma repetida (ej. $3 \times 4 = 3 + 3 + 3 + 3 = 12$). Se utiliza para calcular el total de grupos iguales. La división es el reparto de una cantidad en partes iguales (ej. $12 \div 3 = 4$). Es la operación inversa de la multiplicación. Es crucial recordar que la división por cero no está definida en matemáticas.
-                                <p class="mt-1"><em>Ejemplo:</em> Si cada amigo tiene 2 galletas 🍪 y tienes 5 amigos, en total tienes $2 \times 5 = 10$ galletas. Si 15 estudiantes se dividen en grupos de 3, hay $15 \div 3 = 5$ grupos. 🧑‍🎓</p></li>
-                                </ul>
-                            </li>
+                            <li><strong>Números Naturales y Enteros:</strong> Números para contar ($\mathbb{N}$) y enteros ($\mathbb{Z}$) que incluyen negativos y cero.</li>
+                            <li><strong>Operaciones Básicas:</strong> Suma, resta, multiplicación y división. Conceptos de conmutatividad, asociatividad y la importancia de la división por cero.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Rama: Conceptos Preliminares de Álgebra y Geometría 📐 - Primeras Ideas</h4>
-                            <p class="mb-2">Una introducción suave a las ideas que se desarrollarán en niveles posteriores, sentando las bases para el pensamiento abstracto y espacial. Estos conceptos son la puerta de entrada a áreas más complejas de las matemáticas.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Álgebra y Geometría Preliminares 📐</h4>
+                            <p class="mb-2">Introducción a ideas que se desarrollarán en niveles posteriores.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Fracciones y Decimales:</strong>
-                                <p>Las fracciones representan partes de un todo (ej. $1/2$, $3/4$). Son útiles para expresar divisiones inexactas o porciones. Los decimales son otra forma de representar números no enteros, especialmente útiles para medidas, dinero y cálculos científicos (ej. $0.5$, $0.75$). Aprenderás a entender su relación y realizar operaciones simples como sumar y restar fracciones con el mismo denominador, así como conversiones básicas entre fracciones y decimales. 🍕💰</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Si una pizza se divide en 8 porciones y te comes 2, has comido $2/8$ o $1/4$ de la pizza. $0.25$ es lo mismo que $1/4$. Un billete de 50 céntimos es $0.50$ euros.</p>
-                            </li>
-                            <li><strong>Figuras Planas Básicas:</strong>
-                                <p>Reconocimiento de formas geométricas fundamentales como cuadrados 🟦, círculos ⭕, triángulos 🔺 y rectángulos 🟨. Entender sus propiedades básicas como el número de lados, la igualdad de sus lados, si tienen ángulos rectos o si son simétricas. Esto es fundamental para describir el mundo que nos rodea.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un letrero de "STOP" es un octágono. Una rueda es un círculo. Una ventana rectangular.</p>
-                            </li>
-                            <li><strong>Perímetro y Área:</strong>
-                                <p>El perímetro es la distancia alrededor de una figura (la "frontera"). Se calcula sumando la longitud de todos sus lados. El área es el espacio que ocupa una figura en una superficie bidimensional. Cálculo simple para figuras básicas como cuadrados, rectángulos y triángulos. Estas medidas son esenciales en la vida diaria, desde construir una valla hasta pintar una pared.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Para un cuadrado con lado de 4 cm, el perímetro es $4 \times 4 = 16$ cm (o $4+4+4+4=16$) y el área es $4 \times 4 = 16$ cm$^2$. Si quieres saber cuánta pintura necesitas para una pared, calculas su área. 📏</p>
-                            </li>
+                            <li><strong>Fracciones y Decimales:</strong> Representan partes de un todo y números no enteros. Conversiones básicas.</li>
+                            <li><strong>Figuras Planas Básicas:</strong> Reconocimiento de cuadrados, círculos, triángulos y rectángulos.</li>
+                            <li><strong>Perímetro y Área:</strong> Distancia alrededor de una figura y espacio que ocupa. Cálculos simples.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te dará una base sólida para avanzar en tu viaje matemático. ¡La práctica constante y la aplicación de estos conceptos en situaciones reales son clave para un aprendizaje duradero! 💪</p>
+                        <p class="mt-4">Este nivel te dará una base sólida para avanzar en tu viaje matemático. ¡La práctica constante es clave! 💪</p>
                     `,
                     questions: [
                         { id: 'm_b_q1', text: 'Calcula: $15 + 23 - 8$.', type: 'number', answer: 30 },
@@ -171,66 +178,36 @@
                 },
                 intermedio: {
                     theory: `
-                        <p class="mb-6">En el nivel Intermedio de Matemáticas 📈, profundizaremos en el álgebra para resolver problemas con incógnitas, exploraremos la geometría en un plano de coordenadas y entenderemos las relaciones en triángulos, además de potenciar tus habilidades con números y sus inversas. Este nivel te equipará con herramientas más sofisticadas para el análisis cuantitativo.</p>
+                        <p class="mb-6">En el nivel Intermedio de Matemáticas 📈, profundizaremos en el álgebra, la geometría analítica y trigonometría, y operaciones avanzadas con números.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Rama: Álgebra 📊 - El Lenguaje de las Incógnitas</h4>
-                            <p class="mb-2">El álgebra es el lenguaje de las matemáticas, donde usamos símbolos (variables) para representar cantidades desconocidas y relaciones, permitiendo generalizar y resolver problemas más complejos. Es la transición de lo numérico a lo simbólico, abriendo un vasto campo de aplicaciones.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Álgebra 📊</h4>
+                            <p class="mb-2">Uso de símbolos para representar cantidades desconocidas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Ecuaciones Lineales:</strong>
-                                <p>Son ecuaciones donde la variable tiene un exponente de 1 (ej. $2x + 5 = 11$). Aprenderás a despejar la incógnita utilizando operaciones inversas (sumar/restar, multiplicar/dividir) para encontrar el valor de la variable que satisface la igualdad. Son la base para modelar relaciones simples en la vida real.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Resuelve $3x - 7 = 8$. Suma 7 a ambos lados: $3x = 15$. Divide por 3: $x = 5$. Si el doble de tu edad más 5 es 25, ¿cuántos años tienes? ($2x+5=25$).</p>
-                            </li>
-                            <li><strong>Sistemas de Ecuaciones:</strong>
-                                <p>Resolver conjuntos de dos o más ecuaciones con múltiples incógnitas (ej. $x+y=5$ y $2x-y=1$). Métodos comunes incluyen sustitución (despejar una variable en una ecuación y sustituirla en la otra) y eliminación (sumar o restar ecuaciones para cancelar una variable). Estos sistemas son cruciales para problemas con múltiples condiciones o variables interdependientes.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Para el sistema anterior, sumando ambas ecuaciones se elimina $y$: $3x = 15 \Rightarrow x=5$. Sustituyendo $x$ en la primera: $5+y=5 \Rightarrow y=0$. Si compras 2 lápices y 3 gomas por $7, y 1 lápiz y 2 gomas por $4, ¿cuánto cuesta cada uno?</p>
-                            </li>
-                            <li><strong>Introducción a Funciones:</strong>
-                                <p>Comprender qué es una función (una relación donde cada entrada tiene una única salida) y cómo representarlas (gráficas, tablas, ecuaciones). Una función asigna a cada elemento de un conjunto (dominio) exactamente un elemento de otro conjunto (codominio). Las funciones son fundamentales para describir relaciones de causa y efecto y modelar fenómenos naturales y económicos. 📈</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La función $f(x) = 2x + 1$. Si $x=3$, $f(3) = 2(3) + 1 = 7$. La distancia recorrida por un coche a velocidad constante es una función del tiempo.</p>
-                            </li>
-                            <li><strong>Polinomios:</strong>
-                                <p>Expresiones algebraicas que involucran sumas, restas y multiplicaciones de variables elevadas a potencias enteras no negativas (ej. $3x^2 - 2x + 5$). Aprenderás a sumar, restar y multiplicar polinomios, que son bloques de construcción esenciales en álgebra y cálculo. Se utilizan para modelar curvas y superficies.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Suma $(2x+3) + (x-1) = 3x+2$. Multiplica $(x+1)(x+2) = x^2 + 3x + 2$.</p>
-                            </li>
+                            <li><strong>Ecuaciones Lineales:</strong> Resolver ecuaciones con una incógnita.</li>
+                            <li><strong>Sistemas de Ecuaciones:</strong> Resolver conjuntos de ecuaciones con múltiples incógnitas (sustitución, eliminación).</li>
+                            <li><strong>Introducción a Funciones:</strong> Comprender qué es una función y sus representaciones.</li>
+                            <li><strong>Polinomios:</strong> Sumar, restar y multiplicar expresiones algebraicas.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Rama: Geometría Analítica y Trigonometría 📏 - Formas en Coordenadas</h4>
-                            <p class="mb-2">Combinaremos la geometría con el álgebra para describir formas en un plano de coordenadas y estudiar las relaciones en triángulos, lo cual es esencial para muchas aplicaciones prácticas en física, ingeniería, navegación y astronomía. 🗺️</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Geometría Analítica y Trigonometría 📏</h4>
+                            <p class="mb-2">Combinar geometría con álgebra en un plano de coordenadas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Plano Cartesiano:</strong>
-                                <p>Sistema de coordenadas que permite ubicar puntos y graficar líneas y figuras geométricas utilizando pares ordenados $(x, y)$. Cada punto en el plano se identifica de forma única con un par de números. Es la base para visualizar funciones y relaciones algebraicas.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El punto $(2, 3)$ está 2 unidades a la derecha del origen y 3 unidades hacia arriba. 📍</p>
-                            </li>
-                            <li><strong>Distancia y Pendiente:</strong>
-                                <p>Calcular la distancia entre dos puntos utilizando el teorema de Pitágoras (fórmula de la distancia, $\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$) y la inclinación de una línea recta (pendiente, $m = \frac{y_2 - y_1}{x_2 - x_1}$). La pendiente indica qué tan empinada es una línea y su dirección. Estos conceptos son fundamentales en la construcción y la física.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La distancia entre $(0,0)$ y $(3,4)$ es $\sqrt{(3-0)^2 + (4-0)^2} = \sqrt{9+16} = \sqrt{25} = 5$. La pendiente de la línea que pasa por $(1,2)$ y $(3,6)$ es $m = \frac{6-2}{3-1} = \frac{4}{2} = 2$.</p>
-                            </li>
-                            <li><strong>Introducción a la Trigonometría:</strong>
-                                <p>Estudio de las relaciones entre los ángulos y los lados de los triángulos, especialmente los rectángulos. Funciones trigonométricas básicas (seno, coseno, tangente - SOH CAH TOA) y sus aplicaciones en la resolución de problemas de altura y distancia. Identidades trigonométricas fundamentales (ej. $\sin^2\theta + \cos^2\theta = 1$) que permiten simplificar expresiones y resolver ecuaciones. La trigonometría es esencial en la topografía, la navegación y el diseño de edificios. 📐</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Si un árbol proyecta una sombra de 10 metros y el ángulo de elevación del sol es $45^\circ$, la altura del árbol es $10 \times \tan(45^\circ) = 10$ metros. Para calcular la altura de una montaña sin escalarla.</p>
-                            </li>
+                            <li><strong>Plano Cartesiano:</strong> Ubicar puntos y graficar figuras con coordenadas $(x, y)$.</li>
+                            <li><strong>Distancia y Pendiente:</strong> Calcular distancia entre puntos y la inclinación de una línea.</li>
+                            <li><strong>Introducción a la Trigonometría:</strong> Relaciones entre ángulos y lados de triángulos (seno, coseno, tangente).</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Rama: Potencias, Raíces y Logaritmos ⚡ - Operaciones Avanzadas</h4>
-                            <p class="mb-2">Exploraremos operaciones más avanzadas con números y sus inversas, que son cruciales para entender el crecimiento y decaimiento exponencial, así como en aplicaciones financieras, científicas y tecnológicas. Estas herramientas permiten manejar números muy grandes o muy pequeños.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Potencias, Raíces y Logaritmos ⚡</h4>
+                            <p class="mb-2">Operaciones avanzadas con números y sus inversas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Propiedades de Potencias:</strong>
-                                <p>Reglas para operar con exponentes, que simplifican cálculos con números grandes o muy pequeños (ej. $x^a \cdot x^b = x^{a+b}$, $(x^a)^b = x^{ab}$, $x^0=1$, $x^{-a} = 1/x^a$). Las potencias son fundamentales en el crecimiento exponencial (población, inversiones) y en la notación científica.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> $2^3 \times 2^2 = 2^{3+2} = 2^5 = 32$. $(2^3)^2 = 2^{3 \times 2} = 2^6 = 64$. Si una población de bacterias se duplica cada hora, su crecimiento es exponencial.</p>
-                            </li>
-                            <li><strong>Raíces Cuadradas y Cúbicas:</strong>
-                                <p>Las operaciones inversas de las potencias. La raíz cuadrada de un número $x$ es un número $y$ tal que $y^2 = x$ (ej. $\sqrt{25} = 5$). La raíz cúbica es similar, pero para la tercera potencia (ej. $\sqrt[3]{8} = 2$). Se utilizan para encontrar dimensiones (lados de cuadrados a partir de áreas) o para resolver ecuaciones que involucran potencias. Los números irracionales (ej. $\sqrt{2}$) también se introducen aquí.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Si un cuadrado tiene un área de 49 cm$^2$, su lado mide $\sqrt{49} = 7$ cm. 🌳</p>
-                            </li>
-                            <li><strong>Concepto de Logaritmos:</strong>
-                                <p>Entender qué son los logaritmos (el exponente al que se debe elevar una base para obtener un número dado) y sus propiedades básicas (ej. $\log_b(xy) = \log_b(x) + \log_b(y)$, $\log_b(x^n) = n \log_b(x)$, $\log_b(x/y) = \log_b(x) - \log_b(y)$). Son fundamentales para resolver ecuaciones exponenciales, analizar escalas logarítmicas (Richter para terremotos, pH para acidez), y en campos como la acústica y la informática. 🧪</p>
-                                <p class="mt-2"><em>Ejemplo:</em> $\log_{10}(100) = 2$ porque $10^2 = 100$. Si el sonido de un concierto aumenta 10 veces, el nivel de decibelios aumenta en 10 unidades (escala logarítmica).</p>
-                            </li>
+                            <li><strong>Propiedades de Potencias:</strong> Reglas para operar con exponentes.</li>
+                            <li><strong>Raíces Cuadradas y Cúbicas:</strong> Operaciones inversas de las potencias.</li>
+                            <li><strong>Concepto de Logaritmos:</strong> Entender qué son y sus propiedades básicas.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te preparará para desafíos matemáticos más avanzados y te dará herramientas para modelar situaciones del mundo real con mayor precisión y profundidad. ¡La práctica constante es tu mejor aliada! 🚀</p>
+                        <p class="mt-4">Este nivel te preparará para desafíos matemáticos más avanzados. ¡La práctica constante es tu mejor aliada! 🚀</p>
                     `,
                     questions: [
                         { id: 'm_i_q1', text: 'Resuelve la ecuación: $5x - 12 = 3x + 4$.', type: 'number', answer: 8 },
@@ -257,62 +234,35 @@
                 },
                 avanzado: {
                     theory: `
-                        <p class="mb-6">En el nivel Avanzado de Matemáticas 🧠, te sumergirás en el cálculo para analizar el cambio y la acumulación, y explorarás el álgebra lineal y las ecuaciones diferenciales, que son la base de la ciencia y la ingeniería moderna. Este nivel te proporcionará las herramientas más potentes para la investigación y el desarrollo en diversas disciplinas.</p>
+                        <p class="mb-6">En el nivel Avanzado de Matemáticas 🧠, te sumergirás en el cálculo, el álgebra lineal y las ecuaciones diferenciales, bases de la ciencia y la ingeniería moderna.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Rama: Cálculo Diferencial 🚀 - El Estudio del Cambio</h4>
-                            <p class="mb-2">El cálculo diferencial estudia cómo cambian las funciones y la tasa de cambio instantánea, fundamental para entender el movimiento, la optimización y el análisis de sistemas dinámicos. Es la base para modelar fenómenos continuos y predecir su comportamiento futuro.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Cálculo Diferencial 🚀</h4>
+                            <p class="mb-2">Estudio de cómo cambian las funciones y la tasa de cambio instantánea.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Límites:</strong>
-                                <p>Comprender el comportamiento de una función a medida que la variable se acerca a un punto específico. Es el concepto fundamental sobre el que se construyen las derivadas e integrales. Un límite describe el valor al que una función "se acerca" a medida que la entrada se acerca a un cierto valor. $\lim_{x \to a} f(x)$.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> $\lim_{x \to 2} (x^2 + 1) = 2^2 + 1 = 5$. Esto significa que a medida que $x$ se acerca a 2, la función $x^2+1$ se acerca a 5.</p>
-                            </li>
-                            <li><strong>Derivadas:</strong>
-                                <p>Calcular la tasa de cambio instantánea de una función. Representa la pendiente de la recta tangente a la curva en un punto dado. Se utiliza para encontrar velocidades, aceleraciones, y en problemas de optimización (máximos y mínimos), donde se busca el valor óptimo de una cantidad. La derivada es una herramienta poderosa para analizar la "sensibilidad" de una función a los cambios en su entrada. $\frac{dy}{dx}$ o $f'(x)$.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Si $f(x) = x^2$, su derivada es $f'(x) = 2x$. La derivada de la posición con respecto al tiempo es la velocidad. 🏎️ Si queremos encontrar la velocidad instantánea de un coche en un momento dado, usamos la derivada de su función de posición.</p>
-                            </li>
-                            <li><strong>Reglas de Derivación y Aplicaciones:</strong>
-                                <p>Técnicas para derivar funciones complejas (regla de la cadena, del producto, del cociente). La regla de la cadena se usa para funciones compuestas, la del producto para productos de funciones y la del cociente para divisiones. Aplicaciones en optimización (encontrar el valor máximo o mínimo de una función), análisis de gráficos de funciones (puntos críticos, concavidad, puntos de inflexión) y tasas relacionadas (cómo cambian varias cantidades en relación entre sí). Estas reglas son fundamentales para resolver problemas de ingeniería, física y economía.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Para maximizar el área de un rectángulo con perímetro fijo, se usa la derivada para encontrar las dimensiones óptimas. 📈 Si el costo de producción de un artículo es una función de la cantidad producida, la derivada del costo nos da el costo marginal.</p>
-                            </li>
+                            <li><strong>Límites:</strong> Comportamiento de una función al acercarse a un punto.</li>
+                            <li><strong>Derivadas:</strong> Tasa de cambio instantánea de una función.</li>
+                            <li><strong>Reglas de Derivación y Aplicaciones:</strong> Técnicas para derivar funciones complejas y su uso en optimización.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Rama: Cálculo Integral 📊 - El Estudio de la Acumulación</h4>
-                            <p class="mb-2">El cálculo integral se enfoca en la acumulación de cantidades y el área bajo las curvas. Es la operación inversa de la diferenciación y permite resolver problemas de volumen, trabajo, y otras acumulaciones. Es crucial para modelar procesos que involucran sumas continuas o totales.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Cálculo Integral 📊</h4>
+                            <p class="mb-2">Estudio de la acumulación de cantidades y el área bajo las curvas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Integrales Indefinidas (Antiderivadas):</strong>
-                                <p>Encontrar la función original a partir de su derivada. Se representa con el símbolo $\int f(x) dx$. El resultado es una familia de funciones que difieren por una constante de integración ($+C$), ya que la derivada de una constante es cero. Las antiderivadas son el primer paso para resolver problemas de acumulación.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La antiderivada de $2x$ es $x^2 + C$, donde $C$ es una constante. Si conocemos la velocidad de un objeto, podemos encontrar su posición integrando la velocidad.</p>
-                            </li>
-                            <li><strong>Integrales Definidas y Aplicaciones:</strong>
-                                <p>Calcular el área exacta bajo una curva entre dos puntos específicos. Se utiliza para calcular volúmenes de sólidos de revolución, longitudes de arco, trabajo realizado por una fuerza variable, y probabilidades en estadística. La integral definida da un valor numérico y representa una acumulación total. $\int_{a}^{b} f(x) dx$.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El área bajo la curva $y=x$ desde $x=0$ hasta $x=2$ es $\int_{0}^{2} x dx = [x^2/2]_0^2 = 2^2/2 - 0^2/2 = 2$. 📏 Si queremos calcular la cantidad total de agua que fluye en un río durante un período de tiempo, usamos una integral definida.</p>
-                            </li>
-                            <li><strong>Teorema Fundamental del Cálculo y Técnicas:</strong>
-                                <p>El Teorema Fundamental del Cálculo es la conexión crucial entre la diferenciación y la integración, que simplifica enormemente el cálculo de integrales definidas. Establece que la integral definida de una función puede calcularse evaluando la antiderivada en los límites de integración. Técnicas de integración como sustitución (cambio de variable), integración por partes (para productos de funciones), fracciones parciales (para funciones racionales) y sustituciones trigonométricas son herramientas avanzadas para resolver integrales complejas.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Para $\int x \cos(x) dx$, se usa integración por partes. Estas técnicas son esenciales para resolver problemas en física, ingeniería y economía.</p>
-                            </li>
+                            <li><strong>Integrales Indefinidas (Antiderivadas):</strong> Encontrar la función original a partir de su derivada.</li>
+                            <li><strong>Integrales Definidas y Aplicaciones:</strong> Calcular el área exacta bajo una curva y sus usos.</li>
+                            <li><strong>Teorema Fundamental del Cálculo y Técnicas:</strong> Conexión entre diferenciación e integración y métodos avanzados.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Rama: Ecuaciones Diferenciales y Álgebra Lineal 🧩 - Modelando Sistemas</h4>
-                            <p class="mb-2">Introducción a campos más especializados y aplicados de las matemáticas, fundamentales en ciencias e ingeniería para modelar sistemas complejos, analizar datos y resolver problemas de alta dimensión. Estas áreas son la columna vertebral de la investigación moderna y la innovación tecnológica.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Ecuaciones Diferenciales y Álgebra Lineal 🧩</h4>
+                            <p class="mb-2">Campos especializados para modelar sistemas complejos.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Ecuaciones Diferenciales:</strong>
-                                <p>Ecuaciones que involucran funciones y sus derivadas. Se utilizan para modelar fenómenos de cambio en física (movimiento de péndulos, flujo de calor), biología (crecimiento poblacional, propagación de enfermedades), economía (modelos de mercado, crecimiento económico) y química (reacciones). Pueden ser ordinarias (ODE, con una sola variable independiente) o parciales (PDE, con múltiples variables independientes). Son la herramienta principal para describir cómo cambian las cosas con el tiempo o el espacio. 🧪</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La ecuación $y' = ky$ modela el crecimiento o decaimiento exponencial (ej. crecimiento de bacterias, desintegración radiactiva). Las ecuaciones diferenciales son el lenguaje de la dinámica de sistemas.</p>
-                            </li>
-                            <li><strong>Álgebra Lineal:</strong>
-                                <p>Estudio de vectores, espacios vectoriales, transformaciones lineales y matrices. Esencial para gráficos por computadora (transformaciones 3D), ciencia de datos (análisis de grandes conjuntos de datos), aprendizaje automático (algoritmos de IA), optimización y resolución de sistemas de ecuaciones complejos. Permite manipular y analizar grandes conjuntos de datos de manera eficiente, siendo la base de muchos algoritmos modernos. 🤖</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Multiplicación de matrices para transformaciones gráficas (rotación, escalado) o para resolver sistemas de ecuaciones lineales con muchas variables. Los algoritmos de búsqueda de Google utilizan principios de álgebra lineal.</p>
-                            </li>
-                            <li><strong>Series y Sucesiones:</strong>
-                                <p>Comportamiento de secuencias de números (listas ordenadas de números) y sumas infinitas (series). Incluye series de Taylor (representar funciones como polinomios infinitos) y Fourier (descomponer funciones periódicas en sumas de senos y cosenos). Estas herramientas permiten aproximar funciones complejas con polinomios o descomponer señales en componentes más simples, lo que es crucial en procesamiento de señales, física y análisis numérico. 🎶</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La serie de Taylor para $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$ (permite calcular $e^x$ con precisión). Las series de Fourier se usan para analizar ondas de sonido o señales eléctricas.</p>
-                            </li>
+                            <li><strong>Ecuaciones Diferenciales:</strong> Ecuaciones que involucran funciones y sus derivadas para modelar cambios.</li>
+                            <li><strong>Álgebra Lineal:</strong> Estudio de vectores, matrices y transformaciones lineales.</li>
+                            <li><strong>Series y Sucesiones:</strong> Comportamiento de secuencias de números y sumas infinitas.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te equipará con herramientas matemáticas poderosas para el análisis y la resolución de problemas en campos científicos y tecnológicos avanzados, preparándote para la investigación y la innovación. ¡El conocimiento es ilimitado!💡</p>
+                        <p class="mt-4">Este nivel te equipará con herramientas matemáticas poderosas para la investigación y la innovación. ¡El conocimiento es ilimitado!💡</p>
                     `,
                     questions: [
                         { id: 'm_a_q1', text: 'Calcula la derivada de $f(x) = 3x^2 - 5x + 7$.', type: 'text', answer: '6x - 5' },
@@ -341,70 +291,33 @@
             comunicacion: {
                 basico: {
                     theory: `
-                        <p class="mb-6">En el nivel Básico de Comunicación 🗣️✍️, sentarás las bases para una interacción efectiva, aprendiendo sobre los componentes esenciales del proceso comunicativo y los modos principales de expresión. Este nivel es crucial para cualquier tipo de interacción social y profesional.</p>
+                        <p class="mb-6">En el nivel Básico de Comunicación 🗣️✍️, sentarás las bases para una interacción efectiva, aprendiendo sobre los componentes esenciales del proceso comunicativo y los modos principales de expresión.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Fundamentos de la Comunicación 🤔 - El Intercambio Básico</h4>
-                            <p class="mb-2">La comunicación es el proceso fundamental de intercambiar información, ideas, sentimientos y significados entre individuos o grupos. Es la base de toda interacción humana y vital para la vida social, permitiéndonos construir relaciones, coordinar acciones y resolver conflictos. Sin comunicación efectiva, la sociedad no podría funcionar.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Fundamentos de la Comunicación 🤔</h4>
+                            <p class="mb-2">La comunicación es el proceso fundamental de intercambiar información, ideas, sentimientos y significados.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Importancia:</strong> Nos permite coordinar acciones, construir relaciones, expresar emociones, resolver conflictos y aprender. Sin comunicación, la sociedad no podría funcionar. Es la base de la colaboración y el entendimiento mutuo.</li>
-                            <li><strong>Elementos Clave del Proceso:</strong> Para que la comunicación sea efectiva, varios elementos deben interactuar de manera fluida:
-                                <ul class="list-circle list-inside ml-8">
-                                <li><strong>Emisor:</strong> Quien inicia el mensaje y lo codifica (convierte sus ideas en un formato comprensible). 🗣️</li>
-                                <li><strong>Mensaje:</strong> La información codificada que el emisor desea transmitir. Debe ser claro y adaptado al receptor. 📝</li>
-                                <li><strong>Canal:</strong> El medio físico o digital por el que viaja el mensaje (aire, papel, internet, teléfono, etc.). La elección del canal puede influir en la efectividad del mensaje. 🌐</li>
-                                <li><strong>Receptor:</strong> Quien recibe el mensaje y lo decodifica (interpreta el mensaje para entenderlo). 👂</li>
-                                <li><strong>Código:</strong> El sistema de signos compartido por el emisor y el receptor para que el mensaje sea comprensible (idioma, gestos, símbolos, etc.). Si el código no es compartido, la comunicación falla. 🔡</li>
-                                <li><strong>Contexto:</strong> Las circunstancias, el entorno o la situación en la que se produce la comunicación. Incluye el lugar, el tiempo, las relaciones entre los participantes, etc. El contexto puede alterar la interpretación del mensaje. 🌍</li>
-                                <li><strong>Retroalimentación (Feedback):</strong> La respuesta del receptor al mensaje del emisor. Es crucial para que el emisor sepa si su mensaje fue comprendido y si necesita ajustarlo. Puede ser verbal o no verbal. 🔄</li>
-                                <li><strong>Ruido:</strong> Cualquier interferencia que distorsiona o dificulta la transmisión o recepción del mensaje. Puede ser físico (sonido), semántico (malentendido de palabras) o psicológico (prejuicios). 🚧</li>
-                                </ul>
-                                <p class="mt-2"><em>Ejemplo:</em> Cuando envías un mensaje de texto a un amigo, tú eres el emisor, el texto es el mensaje, el teléfono es el canal, tu amigo es el receptor, el español es el código y la situación en la que se encuentran es el contexto. Si hay mala señal, eso sería ruido. 📱</p>
-                            </li>
+                            <li><strong>Importancia:</strong> Permite coordinar acciones, construir relaciones, expresar emociones, etc.</li>
+                            <li><strong>Elementos Clave:</strong> Emisor, Mensaje, Canal, Receptor, Código, Contexto, Retroalimentación (Feedback), Ruido.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Modos de Comunicación: Verbal y No Verbal 💬 gestures - Más allá de las Palabras</h4>
-                            <p class="mb-2">No solo hablamos con palabras; también comunicamos con nuestro cuerpo y otras señales. Entender ambos modos es crucial para la claridad y la efectividad, ya que a menudo se complementan o incluso se contradicen.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Modos de Comunicación: Verbal y No Verbal 💬 gestures</h4>
+                            <p class="mb-2">No solo hablamos con palabras; también comunicamos con nuestro cuerpo y otras señales.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Comunicación Verbal:</strong>
-                                <p>Se refiere al uso de palabras, ya sea habladas (oral) o escritas. Es el modo más directo de transmitir información. La elección de vocabulario, la gramática y la claridad son fundamentales para que el mensaje sea preciso y efectivo.</p>
-                                <p class="mt-2"><em>Ejemplo Oral:</em> Una conversación cara a cara, una llamada telefónica, un discurso público, una presentación. 📞</p>
-                                <p class="mt-2"><em>Ejemplo Escrito:</em> Un correo electrónico, una carta, un libro, un mensaje de texto, un informe. 📧</p>
-                            </li>
-                            <li><strong>Comunicación No Verbal:</strong>
-                                <p>Incluye todos los mensajes que transmitimos sin usar palabras. A menudo, esto dice más que las palabras y puede reforzar o contradecir el mensaje verbal. Es una parte significativa de cómo interpretamos las interacciones.</p>
-                                <ul class="list-circle list-inside ml-8">
-                                <li><strong>Gestos:</strong> Movimientos de manos y cuerpo que complementan o reemplazan las palabras (ej. un pulgar hacia arriba 👍, señalar, saludar).</li>
-                                <li><strong>Expresiones Faciales:</strong> Los movimientos de los músculos faciales que transmiten emociones (ej. alegría 😄, tristeza 😢, sorpresa 😮, enojo 😠).</li>
-                                <li><strong>Postura:</strong> Cómo se posiciona el cuerpo, que puede indicar confianza, sumisión, apertura o cerrazón (ej. hombros caídos vs. erguidos, brazos cruzados). 🧍‍♀️</li>
-                                <li><strong>Contacto Visual:</strong> Mantener o evitar la mirada, que puede indicar interés, honestidad, respeto o incomodidad. 👀</li>
-                                <li><strong>Tono de Voz (Paralenguaje):</strong> Volumen, velocidad, ritmo, pausas y entonación. No es lo que se dice, sino cómo se dice. Puede cambiar completamente el significado de una frase. 🔊</li>
-                                <li><strong>Proxémica:</strong> El uso del espacio personal y la distancia entre las personas al comunicarse. Varía culturalmente. 📏</li>
-                                <li><strong>Apariencia Personal:</strong> La vestimenta, el peinado, los accesorios. También comunican mensajes sobre la persona. 👗👔</li>
-                                </ul>
-                                <p class="mt-2"><em>Ejemplo:</em> Decir "Estoy bien" con el ceño fruncido y los brazos cruzados envía un mensaje no verbal que contradice el verbal, indicando que no estás realmente bien. 😠</p>
-                            </li>
+                            <li><strong>Comunicación Verbal:</strong> Uso de palabras (habladas o escritas).</li>
+                            <li><strong>Comunicación No Verbal:</strong> Mensajes sin palabras (gestos, expresiones faciales, postura, contacto visual, tono de voz, proxémica, apariencia).</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Habilidades de Recepción: Escucha Activa 👂 - El Arte de Entender</h4>
-                            <p class="mb-2">Comunicarse bien no es solo hablar, es también saber escuchar de manera consciente y empática para comprender verdaderamente al interlocutor, no solo sus palabras, sino también sus sentimientos e intenciones. Es una habilidad fundamental para construir relaciones sólidas y resolver problemas.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Habilidades de Recepción: Escucha Activa 👂</h4>
+                            <p class="mb-2">Saber escuchar de manera consciente y empática para comprender verdaderamente al interlocutor.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Prestar Atención Plena:</strong>
-                                <p>Implica concentrarse completamente en el hablante, evitando distracciones internas y externas. Mirar a la persona, evitar interrupciones, y mostrar interés genuino a través de señales no verbales (asentir con la cabeza, contacto visual apropiado, expresión facial atenta). El objetivo es absorber el mensaje sin interrupciones ni juicios prematuros.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Apagar tu teléfono mientras alguien te habla, o dejar de lado otras tareas para dedicarle toda tu atención. 📵</p>
-                            </li>
-                            <li><strong>Comprender y Clarificar:</strong>
-                                <p>Intentar entender lo que la otra persona está diciendo y sintiendo, incluyendo el mensaje explícito e implícito. Hacer preguntas abiertas para clarificar puntos confusos o para obtener más detalles. Parafrasear lo que has escuchado con tus propias palabras para confirmar tu comprensión y permitir que el hablante corrija cualquier malentendido. Esto demuestra que estás procesando activamente la información. 🤔</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Entonces, si entiendo bien, ¿estás frustrado porque el proyecto se retrasó?" o "¿Podrías darme un ejemplo de lo que quieres decir con 'falta de apoyo'?"</p>
-                            </li>
-                            <li><strong>Empatía y No Juicio:</strong>
-                                <p>Intentar ponerse en el lugar del otro para comprender su perspectiva y sus emociones, incluso si no estás de acuerdo con ellas. Suspender el juicio y evitar interrumpir con soluciones o consejos prematuros. El objetivo es crear un espacio seguro donde el hablante se sienta escuchado y comprendido. ❤️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> En lugar de decir "No deberías sentirte así", decir "Entiendo que te sientas así dada la situación."</p>
-                            </li>
+                            <li><strong>Prestar Atención Plena:</strong> Concentrarse completamente en el hablante, evitando distracciones.</li>
+                            <li><strong>Comprender y Clarificar:</strong> Entender el mensaje y hacer preguntas para clarificar.</li>
+                            <li><strong>Empatía y No Juicio:</strong> Ponerse en el lugar del otro y suspender el juicio.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Dominar estos conceptos básicos te ayudará a mejorar tus interacciones diarias y a sentar las bases para una comunicación más efectiva, tanto en el ámbito personal como profesional. ¡La práctica constante es la clave para convertir estas habilidades en hábitos! 🌟</p>
+                        <p class="mt-4">Dominar estos conceptos básicos te ayudará a mejorar tus interacciones diarias. ¡La práctica constante es la clave! 🌟</p>
                     `,
                     questions: [
                         { id: 'c_b_q1', text: 'Menciona un elemento clave del proceso de comunicación.', type: 'text', answer: 'Emisor' },
@@ -431,69 +344,39 @@
                 },
                 intermedio: {
                     theory: `
-                        <p class="mb-6">En el nivel Intermedio de Comunicación 🤝, explorarás cómo identificar y superar las barreras que dificultan el mensaje, aprenderás a expresar tus ideas con asertividad y adaptarás tu estilo comunicativo a diversos contextos. Este nivel te permitirá comunicarte con mayor confianza y eficacia en situaciones más variadas.</p>
+                        <p class="mb-6">En el nivel Intermedio de Comunicación 🤝, explorarás cómo identificar y superar las barreras que dificultan el mensaje, aprenderás a expresar tus ideas con asertividad y adaptarás tu estilo comunicativo a diversos contextos.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Identificación y Superación de Barreras de la Comunicación 🚧 - Obstáculos en el Mensaje</h4>
-                            <p class="mb-2">A menudo, algo interfiere con la claridad de nuestros mensajes. Identificar estas barreras es el primer paso para superarlas y asegurar que el mensaje llegue como se desea, mejorando la comprensión mutua y evitando conflictos. Reconocer estos obstáculos es clave para una comunicación efectiva. 🗣️➡️👂</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Barreras de la Comunicación 🚧</h4>
+                            <p class="mb-2">Obstáculos que interfieren con la claridad de los mensajes.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Ruido Físico:</strong> Sonidos externos, distracciones visuales o cualquier elemento ambiental que impida escuchar o concentrarse en el mensaje. Es lo que físicamente nos impide percibir el mensaje.
-                                <p class="mt-2"><em>Ejemplo:</em> Música alta en una cafetería mientras intentas hablar, el sonido de una obra en construcción, una mala conexión de internet durante una videollamada. 🎶</p>
-                            </li>
-                            <li><strong>Barreras Semánticas:</strong> Diferencias en el significado de las palabras, jergas técnicas, acentos, regionalismos o interpretaciones culturales que llevan a malentendidos. Ocurren cuando el emisor y el receptor no comparten el mismo significado para un término o frase.
-                                <p class="mt-2"><em>Ejemplo:</em> Usar "coche" en España y "carro" en Latinoamérica puede causar confusión si no se conoce la variante. 🚗 Otro ejemplo es el uso de tecnicismos en una conversación con alguien que no es experto en el tema.</p>
-                            </li>
-                            <li><strong>Barreras Psicológicas:</strong> Prejuicios, emociones (ira, miedo, ansiedad), estados de ánimo, estereotipos, percepciones individuales, falta de atención o desinterés que afectan la interpretación del mensaje por parte del receptor o la forma en que el emisor lo codifica. Estas barreras residen en la mente de los comunicadores.
-                                <p class="mt-2"><em>Ejemplo:</em> No escuchar a alguien porque ya tienes una opinión negativa sobre esa persona, o estar tan enojado que no puedes procesar lo que te dicen. 😠</p>
-                            </li>
-                            <li><strong>Barreras Fisiológicas:</strong> Problemas de audición, visión, dicción, afonía o cualquier condición física que dificulte la recepción o emisión clara del mensaje. Son limitaciones biológicas que impiden la comunicación.
-                                <p class="mt-2"><em>Ejemplo:</em> Una persona con gripe y voz ronca intentando dar un discurso, o alguien con problemas de visión intentando leer un texto pequeño. 🤒</p>
-                            </li>
-                            <li><strong>Barreras Administrativas:</strong> Relacionadas con la estructura de la organización, la falta de canales de comunicación adecuados, la sobrecarga de información o la falta de planificación.
-                                <p class="mt-2"><em>Ejemplo:</em> Un exceso de correos electrónicos que hace que los mensajes importantes se pierdan, o una jerarquía muy rígida que impide la comunicación fluida entre departamentos.</p>
-                            </li>
+                            <li><strong>Ruido Físico:</strong> Sonidos externos y distracciones ambientales.</li>
+                            <li><strong>Barreras Semánticas:</strong> Diferencias en el significado de palabras o jergas.</li>
+                            <li><strong>Barreras Psicológicas:</strong> Prejuicios, emociones o falta de atención.</li>
+                            <li><strong>Barreras Fisiológicas:</strong> Problemas de audición, visión o dicción.</li>
+                            <li><strong>Barreras Administrativas:</strong> Problemas de estructura organizacional o sobrecarga de información.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Comunicación Asertiva ✅ - Exprésate con Respecto</h4>
-                            <p class="mb-2">Aprender a expresar tus opiniones, necesidades y deseos de forma clara, directa y respetuosa, sin agredir ni ser pasivo, es una habilidad clave para las relaciones interpersonales sanas y el éxito profesional. Es el equilibrio entre la agresividad (imponer tus ideas) y la pasividad (no expresar tus ideas), promoviendo la autoestima y el respeto mutuo. ⚖️</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Comunicación Asertiva ✅</h4>
+                            <p class="mb-2">Expresar opiniones, necesidades y deseos de forma clara, directa y respetuosa.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Decir "No" de Forma Constructiva:</strong> Establecer límites de manera educada pero firme, sin sentir culpa ni dañar la relación. Implica explicar brevemente la razón (sin excusas excesivas) y, si es posible, ofrecer una alternativa o una solución parcial.
-                                <p class="mt-2"><em>Ejemplo:</em> "Agradezco la invitación, pero hoy no podré ir. Tengo otro compromiso. Quizás la próxima semana sí pueda."</p>
-                            </li>
-                            <li><strong>Expresar Sentimientos y Necesidades:</strong> Utilizar el "yo siento..." en lugar de culpabilizar ("tú me haces sentir..."), asumiendo la responsabilidad de las propias emociones y expresando lo que necesitas de manera clara y específica. Esto evita la confrontación y fomenta la comprensión.
-                                <p class="mt-2"><em>Ejemplo:</em> "Me siento frustrado cuando no se cumplen los plazos, y necesito que me informes con anticipación si hay un retraso para poder ajustar mi planificación."</p>
-                            </li>
-                            <li><strong>Negociación Básica:</strong> Buscar soluciones donde ambas partes ganen (win-win), priorizando el respeto mutuo, la colaboración y la búsqueda de intereses comunes, en lugar de solo enfocarse en posiciones. Implica escuchar activamente, identificar puntos en común y proponer soluciones creativas.
-                                <p class="mt-2"><em>Ejemplo:</em> En una discusión sobre un proyecto, proponer: "Entiendo tu punto sobre la necesidad de rapidez, y yo valoro la calidad. ¿Qué tal si combinamos mi idea A con tu idea B para lograr un mejor resultado que sea rápido y de buena calidad?" 🤝</p>
-                            </li>
-                            <li><strong>Recibir y Dar Retroalimentación (Feedback):</strong> Aprender a aceptar críticas constructivas sin ponerse a la defensiva y a dar feedback de manera que sea útil y no hiriente. El feedback asertivo se enfoca en el comportamiento, no en la persona.
-                                <p class="mt-2"><em>Ejemplo:</em> Dar: "He notado que los informes llegan tarde a menudo, lo que afecta la planificación. ¿Podríamos buscar una forma de mejorar esto?" Recibir: "Gracias por tu feedback, lo tendré en cuenta para mejorar."</p>
-                            </li>
+                            <li><strong>Decir "No" Constructivamente:</strong> Establecer límites educada pero firmemente.</li>
+                            <li><strong>Expresar Sentimientos y Necesidades:</strong> Usar "yo siento..." para evitar culpar.</li>
+                            <li><strong>Negociación Básica:</strong> Buscar soluciones "ganar-ganar".</li>
+                            <li><strong>Recibir y Dar Retroalimentación:</strong> Aceptar y dar críticas constructivas.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Adaptación Comunicativa en Diferentes Contextos 🌍 - El Camaleón Comunicativo</h4>
-                            <p class="mb-2">La forma en que te comunicas cambia significativamente según la situación, la audiencia y el propósito. Saber adaptar tu estilo es una señal de alta competencia comunicativa y te permite ser más efectivo en cualquier interacción, desde una charla informal hasta una presentación profesional. 🎭</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Adaptación Comunicativa 🌍</h4>
+                            <p class="mb-2">Adaptar el estilo de comunicación según la situación y la audiencia.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Comunicación Formal vs. Informal:</strong>
-                                <p>Adaptar tu lenguaje, tono, vocabulario y estructura a la audiencia y al propósito. La comunicación formal se usa en entornos profesionales, académicos o con personas de autoridad (ej. un jefe, un profesor); la informal, con amigos, familiares o en situaciones relajadas. La formalidad implica mayor precisión y respeto a las normas. </p>
-                                <p class="mt-2"><em>Ejemplo:</em> En una entrevista de trabajo, usar "Estimado Sr. Pérez" y un lenguaje respetuoso y estructurado. Con un amigo, usar "¡Hola, Juan!" y un lenguaje coloquial y abreviado. 👔 casual</p>
-                            </li>
-                            <li><strong>Comunicación Digital y Netiqueta:</strong>
-                                <p>Reglas de etiqueta (netiqueta) específicas para plataformas digitales como correos electrónicos 📧, mensajes de texto, redes sociales 📱 y videollamadas. Considerar la brevedad, claridad, profesionalismo y el tono adecuado, ya que la no verbalidad es limitada y los malentendidos son más comunes. La netiqueta busca mantener el respeto y la eficiencia en el entorno digital.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Evitar escribir todo en mayúsculas en un correo electrónico (se percibe como gritar), usar un lenguaje claro y conciso en mensajes de trabajo, y evitar el uso excesivo de emojis en contextos formales. 🚫CAPS</p>
-                            </li>
-                            <li><strong>Comunicación en Público (Básico):</strong>
-                                <p>Primeros pasos para hablar frente a una audiencia. Incluye la importancia del contacto visual (para conectar con la audiencia), la postura (para transmitir confianza), la modulación de la voz (volumen, tono, ritmo para mantener el interés) y la organización de ideas (estructura clara y concisa) para un mensaje claro y conciso. Superar el miedo escénico es un objetivo inicial.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Practicar un breve discurso frente al espejo antes de una presentación escolar, o preparar puntos clave para una reunión de equipo. 🎤</p>
-                            </li>
-                            <li><strong>Comunicación Escrita Efectiva:</strong>
-                                <p>Más allá de la gramática y la ortografía, se trata de estructurar las ideas de forma lógica, usar un lenguaje preciso y conciso, y adaptar el mensaje al lector. Esto incluye la redacción de informes, correos electrónicos y documentos claros y persuasivos. 📝</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Escribir un correo electrónico con un asunto claro, un saludo apropiado, un cuerpo conciso y una llamada a la acción. </p>
-                            </li>
+                            <li><strong>Formal vs. Informal:</strong> Ajustar lenguaje y tono al contexto.</li>
+                            <li><strong>Comunicación Digital y Netiqueta:</strong> Reglas de etiqueta para plataformas digitales.</li>
+                            <li><strong>Comunicación en Público (Básico):</strong> Primeros pasos para hablar frente a una audiencia.</li>
+                            <li><strong>Comunicación Escrita Efectiva:</strong> Estructurar ideas, usar lenguaje preciso y conciso.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te proporcionará las herramientas para comunicarte con mayor confianza y eficacia en una variedad de situaciones, superando obstáculos y construyendo relaciones más sólidas, tanto en tu vida personal como profesional. ¡Sigue practicando y observando cómo se comunican los demás! 🗣️</p>
+                        <p class="mt-4">Este nivel te proporcionará las herramientas para comunicarte con mayor confianza y eficacia. ¡Sigue practicando! 🗣️</p>
                     `,
                     questions: [
                         { id: 'c_i_q1', text: 'Menciona una barrera psicológica de la comunicación.', type: 'text', answer: 'Prejuicios' },
@@ -520,56 +403,36 @@
                 },
                 avanzado: {
                     theory: `
-                        <p class="mb-6">En el nivel Avanzado de Comunicación 🚀, te enfocarás en la comunicación estratégica, la persuasión ética y el liderazgo a través de la palabra, preparándote para influir y gestionar en escenarios complejos y de alto nivel. Este nivel te convertirá en un comunicador maestro, capaz de navegar las complejidades de la interacción humana.</p>
+                        <p class="mb-6">En el nivel Avanzado de Comunicación 🚀, te enfocarás en la comunicación estratégica, la persuasión ética y el liderazgo a través de la palabra.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Comunicación Persuasiva y Retórica 🎯 - El Arte de Influir</h4>
-                            <p class="mb-2">Aprender a influir en los demás de manera ética y efectiva para lograr objetivos, utilizando principios de la retórica clásica y moderna. No se trata de manipular, sino de construir argumentos sólidos, conectar con la audiencia y motivar a la acción. Es una habilidad esencial para el liderazgo, las ventas y cualquier rol que requiera influencia.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Comunicación Persuasiva y Retórica 🎯</h4>
+                            <p class="mb-2">Aprender a influir en los demás de manera ética y efectiva.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Principios de la Retórica (Aristóteles):</strong> La retórica es el arte de persuadir. Aristóteles identificó tres pilares fundamentales que todo comunicador debe dominar:
-                                <ul class="list-circle list-inside ml-8">
-                                <li><strong>Logos (Lógica):</strong> Uso de argumentos racionales, datos, hechos, estadísticas y razonamiento deductivo/inductivo para convencer a la audiencia. Apela a la razón. 📊</li>
-                                <li><strong>Ethos (Credibilidad):</strong> Establecer tu autoridad, experiencia, conocimiento, carácter moral y buena voluntad para generar confianza en la audiencia. Apela al carácter del orador. 🏅</li>
-                                <li><strong>Pathos (Emoción):</strong> Apelar a las emociones, valores y creencias de la audiencia para conectar a un nivel más profundo y moverlos a la acción. Apela a la emoción. 😢😊</li>
-                                </ul>
-                                <p class="mt-2"><em>Ejemplo:</em> En una negociación salarial, presentar datos de mercado (logos), resaltar tu experiencia y logros (ethos) y expresar tu entusiasmo por el puesto y tu deseo de contribuir (pathos).</p>
-                            </li>
-                            <li><strong>Técnicas de Negociación Avanzadas:</strong> Estrategias para alcanzar acuerdos complejos, resolver conflictos a gran escala y manejar objeciones de manera constructiva, buscando siempre el valor mutuo (ganar-ganar) y la creación de soluciones creativas. Incluye el análisis de intereses (no solo posiciones), el uso de alternativas (BATNA), y la construcción de relaciones.
-                                <p class="mt-2"><em>Ejemplo:</em> En una fusión de empresas, identificar los intereses subyacentes de ambas partes para encontrar un acuerdo que maximice el valor para todos, en lugar de solo discutir los términos iniciales.</p>
-                            </li>
-                            <li><strong>Presentaciones de Alto Impacto:</strong> Diseñar y entregar discursos y presentaciones que no solo informen, sino que también cautiven, inspiren y motiven a la acción. Incluye storytelling (narrar historias para conectar emocionalmente), diseño de diapositivas efectivo (visuales claros y minimalistas), manejo del escenario (lenguaje corporal, movimiento) y vocalización (volumen, ritmo, pausas). 🎤✨</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un discurso TED Talk, que combina datos con anécdotas personales para inspirar y persuadir a la audiencia sobre una idea innovadora.</p>
-                            </li>
+                            <li><strong>Principios de la Retórica:</strong> Logos (lógica), Ethos (credibilidad), Pathos (emoción).</li>
+                            <li><strong>Técnicas de Negociación Avanzadas:</strong> Estrategias para acuerdos complejos y manejo de objeciones.</li>
+                            <li><strong>Presentaciones de Alto Impacto:</strong> Diseñar y entregar discursos que cautiven e inspiren.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Comunicación Intercultural y Global 🌐 - Conectando Mundos</h4>
-                            <p class="mb-2">Entender y adaptarse a las profundas diferencias culturales en la comunicación para evitar malentendidos, construir relaciones sólidas y operar eficazmente en un entorno globalizado. Es crucial en un mundo cada vez más conectado, donde las interacciones transculturales son la norma.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Comunicación Intercultural y Global 🌐</h4>
+                            <p class="mb-2">Entender y adaptarse a las diferencias culturales en la comunicación.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Dimensiones Culturales (Hofstede y Hall):</strong>
-                                <p>Análisis de modelos que explican cómo las culturas varían en dimensiones clave. Por ejemplo, el modelo de Hofstede incluye individualismo vs. colectivismo, distancia de poder, evitación de la incertidumbre, masculinidad vs. feminidad, y orientación a largo/corto plazo. El modelo de Hall introduce la alta vs. baja contextualidad (qué tanto se depende del contexto no verbal y la historia compartida para entender un mensaje). Comprender estas dimensiones ayuda a predecir y adaptar el comportamiento comunicativo. </p>
-                                <p class="mt-2"><em>Ejemplo:</em> En una cultura de alto contexto (ej. Japón), un "sí" puede significar "lo entiendo" o "lo consideraré", no necesariamente "estoy de acuerdo", debido a la importancia de la armonía y la comunicación implícita.</p>
-                            </li>
-                            <li><strong>Sensibilidad Cultural y Adaptación:</strong> Desarrollar la capacidad de observar, interpretar y respetar normas, valores y comportamientos comunicativos de otras culturas. Implica ser flexible, evitar el etnocentrismo (juzgar otras culturas con los propios valores) y practicar la empatía cultural. Se trata de ajustar tu propio estilo de comunicación para ser más efectivo y respetuoso en un contexto diferente.
-                                <p class="mt-2"><em>Ejemplo:</em> Evitar el contacto visual directo en algunas culturas asiáticas como señal de respeto, mientras que en Occidente es señal de atención. Adaptar el humor o las referencias culturales para que sean apropiadas para la audiencia.</p>
-                            </li>
-                            <li><strong>Comunicación en Equipos Globales:</strong> Estrategias para gestionar la comunicación en equipos distribuidos geográficamente y culturalmente diversos. Esto incluye el uso efectivo de la tecnología, el establecimiento de normas claras, la gestión de diferencias horarias y la promoción de un ambiente inclusivo.</li>
+                            <li><strong>Dimensiones Culturales:</strong> Modelos (Hofstede, Hall) que explican variaciones culturales.</li>
+                            <li><strong>Sensibilidad Cultural y Adaptación:</strong> Observar, interpretar y respetar normas de otras culturas.</li>
+                            <li><strong>Comunicación en Equipos Globales:</strong> Estrategias para equipos distribuidos culturalmente.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Liderazgo, Gestión y Comunicación de Crisis 🚨 - La Voz en la Tormenta</h4>
-                            <p class="mb-2">La comunicación es una herramienta vital para el liderazgo efectivo y la gestión de situaciones difíciles, donde la claridad, la transparencia y la empatía son cruciales para mantener la confianza y minimizar el daño. Un buen líder es un comunicador excepcional, especialmente bajo presión. 🚢</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Liderazgo, Gestión y Comunicación de Crisis 🚨</h4>
+                            <p class="mb-2">La comunicación como herramienta vital para el liderazgo y la gestión de situaciones difíciles.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Comunicación de Liderazgo:</strong> Inspirar, motivar y guiar equipos a través de una comunicación clara, visionaria y empática, fomentando la cohesión, el compromiso y la resiliencia. Un líder comunica la visión, los valores, las expectativas y el propósito, y también escucha activamente a su equipo. La comunicación de un líder debe ser consistente y auténtica.
-                                <p class="mt-2"><em>Ejemplo:</em> Steve Jobs presentando un nuevo iPhone, no solo informando sobre el producto, sino inspirando con su visión del futuro y conectando emocionalmente con la audiencia. 🍎</p>
-                            </li>
-                            <li><strong>Gestión de Crisis:</strong> Desarrollar planes y estrategias para comunicar de manera efectiva durante situaciones de emergencia (desastres naturales, escándalos corporativos, fallas de productos). Implica ser rápido, preciso, transparente y empático para mantener la confianza de los stakeholders (empleados, clientes, inversores, público) y minimizar el daño reputacional. La comunicación de crisis busca controlar la narrativa y ofrecer soluciones.
-                                <p class="mt-2"><em>Ejemplo:</em> Una empresa emitiendo un comunicado claro, honesto y ofreciendo soluciones rápidas y concretas tras un error en un producto que afectó a los consumidores. 📢</p>
-                            </li>
-                            <li><strong>Comunicación de Cambio:</strong> Liderar a través del cambio organizacional, comunicando la necesidad del cambio, los beneficios, los desafíos y los próximos pasos de manera efectiva para reducir la resistencia y fomentar la aceptación y el compromiso de los empleados.</li>
-                            <li><strong>Comunicación de Influencia y Redes:</strong> Desarrollar la capacidad de construir y mantener redes profesionales, influir en stakeholders clave y negociar a nivel estratégico para lograr objetivos a largo plazo.</li>
+                            <li><strong>Comunicación de Liderazgo:</strong> Inspirar y guiar equipos con comunicación clara y empática.</li>
+                            <li><strong>Gestión de Crisis:</strong> Desarrollar planes para comunicar eficazmente en emergencias.</li>
+                            <li><strong>Comunicación de Cambio:</strong> Liderar a través del cambio organizacional.</li>
+                            <li><strong>Comunicación de Influencia y Redes:</strong> Construir redes profesionales e influir en stakeholders.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te transformará en un comunicador maestro, capaz de liderar, persuadir y construir puentes en cualquier escenario, dominando el arte de la influencia y la conexión humana en un mundo complejo y dinámico. ¡Tu voz tiene un poder transformador! 🌟</p>
+                        <p class="mt-4">Este nivel te transformará en un comunicador maestro, capaz de liderar, persuadir y construir puentes. ¡Tu voz tiene un poder transformador! 🌟</p>
                     `,
                     questions: [
                         { id: 'c_a_q1', text: 'Menciona los tres principios de la retórica de Aristóteles.', type: 'text', answer: 'Logos, Ethos, Pathos' },
@@ -595,325 +458,42 @@
                     ]
                 },
             },
-            cyt: {
-                basico: {
-                    theory: `
-                        <p class="mb-6">En el nivel Básico de Ciencia y Tecnología 🔬💡, comenzarás tu viaje para comprender cómo funciona el mundo natural y cómo la ingeniosidad humana aplica ese conocimiento para crear soluciones prácticas que mejoran nuestra vida diaria. Este nivel te proporcionará una base sólida para entender el entorno que te rodea.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. ¿Qué es la Ciencia? 🔭 - Explorando el Mundo</h4>
-                            <p class="mb-2">La ciencia es una forma sistemática de entender el mundo a través de la curiosidad, la observación y la experimentación. Nos ayuda a responder preguntas sobre el "porqué" y el "cómo" de los fenómenos naturales, construyendo un conocimiento verificable y basado en la evidencia. Es un proceso continuo de descubrimiento.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Observación:</strong> El primer paso científico, que implica mirar y registrar cuidadosamente lo que sucede en el entorno, utilizando los sentidos o instrumentos (ej. un telescopio, un microscopio). La observación debe ser objetiva y detallada.
-                                <p class="mt-2"><em>Ejemplo:</em> Observar que las plantas crecen hacia la luz solar, o que los objetos caen al suelo. ☀️🌱</p>
-                            </li>
-                            <li><strong>Hipótesis:</strong> Una explicación provisional o una suposición educada sobre un fenómeno observado. Es una afirmación que puede ser probada mediante experimentación.
-                                <p class="mt-2"><em>Ejemplo:</em> "Las plantas crecen más rápido con luz solar que en la oscuridad."</p>
-                            </li>
-                            <li><strong>Experimentación:</strong> Diseñar y llevar a cabo pruebas controladas para verificar hipótesis y recopilar evidencia (datos) que las apoye o las refute. Un buen experimento tiene variables controladas y una variable independiente que se manipula.
-                                <p class="mt-2"><em>Ejemplo:</em> Poner una planta en la oscuridad y otra a la luz para ver la diferencia en el crecimiento, midiendo la altura de cada una diariamente. 🧪</p>
-                            </li>
-                            <li><strong>Análisis y Conclusión:</strong> Interpretar los datos recopilados en el experimento para determinar si la hipótesis es correcta o incorrecta. La conclusión debe basarse en la evidencia. Si la hipótesis es refutada, se formula una nueva.
-                                <p class="mt-2"><em>Ejemplo:</em> Concluir que la planta con luz solar creció más, apoyando la hipótesis.</p>
-                            </li>
-                            <li><strong>Preguntas y Respuestas:</strong> La ciencia se basa en la formulación de preguntas (ej. "¿Por qué el cielo es azul?") y la búsqueda de explicaciones lógicas y verificables basadas en la evidencia recopilada. Siempre se busca entender el "porqué" de las cosas.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. ¿Qué es la Tecnología? 🛠️ - Creando Soluciones</h4>
-                            <p class="mb-2">La tecnología es la aplicación práctica del conocimiento científico para crear herramientas, máquinas, sistemas y procesos que resuelven problemas, satisfacen necesidades humanas y mejoran la calidad de vida. Es el "saber hacer" aplicado, transformando ideas en soluciones tangibles que facilitan nuestra existencia.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Herramientas y Máquinas:</strong> Creación de objetos que nos facilitan el trabajo y amplían nuestras capacidades, desde una palanca simple hasta complejos robots y sistemas de inteligencia artificial. La tecnología nos permite hacer más con menos esfuerzo.
-                                <p class="mt-2"><em>Ejemplo:</em> Un martillo 🔨 para clavar, un teléfono inteligente 📱 para comunicarse, un coche para transportarse. </p>
-                            </li>
-                            <li><strong>Solución de Problemas:</strong> La tecnología busca formas eficientes y efectivas de mejorar nuestras vidas, ya sea en la comunicación (internet, teléfonos), el transporte (coches, aviones), la salud (medicamentos, equipos médicos) o la producción de alimentos (maquinaria agrícola). Es una respuesta a las necesidades humanas.
-                                <p class="mt-2"><em>Ejemplo:</em> La invención de la rueda para facilitar el transporte de cargas pesadas, o el desarrollo de vacunas para prevenir enfermedades. ⚙️</p>
-                            </li>
-                            <li><strong>Innovación:</strong> La tecnología no solo resuelve problemas existentes, sino que también crea nuevas posibilidades y mejora las soluciones actuales, impulsando el progreso.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Conceptos Básicos de Ciencias Naturales 🌳 - Nuestro Entorno</h4>
-                            <p class="mb-2">Una mirada rápida a los fundamentos de la vida y el universo, introduciendo las grandes áreas de estudio de las ciencias naturales que nos ayudan a entender el mundo que nos rodea y sus fenómenos básicos.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Biología Básica:</strong>
-                                <p>El estudio de los seres vivos, sus estructuras, funciones, crecimiento, origen, evolución y distribución. Diferencias fundamentales entre plantas 🌿 (organismos autótrofos que producen su propio alimento mediante fotosíntesis) y animales 🐾 (organismos heterótrofos que consumen otros organismos para obtener energía). Introducción a los ciclos de vida simples (ej. mariposa 🦋: huevo, larva, pupa, adulto).</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Las plantas necesitan luz solar para crecer (fotosíntesis). Los animales, como los humanos, necesitan comer para obtener energía.</p>
-                            </li>
-                            <li><strong>Física Cotidiana:</strong>
-                                <p>Conceptos básicos de cómo funciona el mundo físico. La gravedad (por qué las cosas caen 🍎, la fuerza de atracción entre objetos con masa), la luz ☀️ (una forma de energía que nos permite ver los colores y las formas) y el sonido 🔊 (vibraciones que se propagan en un medio y que podemos escuchar). Estos principios explican fenómenos que experimentamos a diario.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Cuando sueltas una pelota, cae al suelo debido a la gravedad. El eco es un ejemplo de cómo el sonido rebota en las superficies.</p>
-                            </li>
-                            <li><strong>Química Elemental:</strong>
-                                <p>La importancia del agua 💧 (esencial para la vida, un excelente disolvente) y sus estados (sólido 🧊, líquido, gas 💨). La idea de que todo está hecho de pequeñas partículas llamadas átomos (la unidad más pequeña de un elemento) y moléculas (dos o más átomos unidos). Introducción a las mezclas (sustancias que se combinan sin reaccionar químicamente) y compuestos (sustancias formadas por la unión química de dos o más elementos).</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El hielo es agua en estado sólido, el vapor es agua en estado gaseoso. El azúcar disuelto en agua es una mezcla. La sal de mesa (cloruro de sodio) es un compuesto.</p>
-                            </li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Este nivel te dará una apreciación inicial de cómo la ciencia y la tecnología moldean nuestro mundo y te inspirará a explorar más a fondo los misterios de la naturaleza y las innovaciones humanas. ¡Prepárate para explorar y cuestionar! 🌍</p>
-                    `,
-                    questions: [
-                        { id: 'cyt_b_q1', text: '¿Cuál es el primer paso del método científico?', type: 'text', answer: 'Observación' },
-                        { id: 'cyt_b_q2', text: 'Menciona un ejemplo de tecnología.', type: 'text', answer: 'Teléfono inteligente' },
-                        { id: 'cyt_b_q3', text: '¿En qué estados se puede encontrar el agua?', type: 'text', answer: 'Sólido, líquido, gas' },
-                        { id: 'cyt_b_q4', text: '¿Qué tipo de organismo produce su propio alimento?', type: 'text', answer: 'Planta' },
-                        { id: 'cyt_b_q5', text: '¿Qué fuerza hace que los objetos caigan al suelo?', type: 'text', answer: 'Gravedad' },
-                        { id: 'cyt_b_q6', text: '¿Cuál es la diferencia principal entre un animal y una planta?', type: 'text', answer: 'Las plantas producen su propio alimento, los animales lo consumen.' },
-                        { id: 'cyt_b_q7', text: '¿Qué es una hipótesis en el método científico?', type: 'text', answer: 'Una idea inicial que se busca verificar.' },
-                        { id: 'cyt_b_q8', text: 'Menciona una herramienta simple que sea un ejemplo de tecnología.', type: 'text', answer: 'Martillo' },
-                        { id: 'cyt_b_q9', text: '¿Qué es el sonido?', type: 'text', answer: 'Vibraciones que se propagan en un medio.' },
-                        { id: 'cyt_b_q10', text: '¿De qué están hechas todas las cosas según la química elemental?', type: 'text', answer: 'Pequeñas partículas (átomos y moléculas).' },
-                        { id: 'cyt_b_q11', text: '¿Qué es la experimentación en ciencia?', type: 'text', answer: 'Diseñar y llevar a cabo pruebas controladas.' },
-                        { id: 'cyt_b_q12', text: 'Da un ejemplo de un ciclo de vida simple.', type: 'text', answer: 'Mariposa' },
-                        { id: 'cyt_b_q13', text: '¿Qué es la luz?', type: 'text', answer: 'Una forma de energía que nos permite ver.' },
-                        { id: 'cyt_b_q14', text: '¿Qué tipo de energía se asocia con el calor?', type: 'text', answer: 'Térmica' },
-                        { id: 'cyt_b_q15', text: '¿Cuál es el objetivo de la tecnología?', type: 'text', answer: 'Resolver problemas y satisfacer necesidades humanas.' },
-                        { id: 'cyt_b_q16', text: '¿Por qué es importante la observación en la ciencia?', type: 'text', answer: 'Es el primer paso para recopilar información.' },
-                        { id: 'cyt_b_q17', text: 'Menciona un beneficio de la tecnología en la comunicación.', type: 'text', answer: 'Permite comunicarse a distancia.' },
-                        { id: 'cyt_b_q18', text: '¿Qué es la biología?', type: 'text', answer: 'El estudio de los seres vivos.' },
-                        { id: 'cyt_b_q19', text: '¿Qué es la física?', type: 'text', answer: 'El estudio de cómo funciona el mundo físico.' },
-                        { id: 'cyt_b_q20', text: '¿Qué es la química?', type: 'text', answer: 'El estudio de la materia y sus transformaciones.' },
-                    ]
-                },
-                intermedio: {
-                    theory: `
-                        <p class="mb-6">En el nivel Intermedio de Ciencia y Tecnología 🧪💻, profundizarás en los principios que rigen la materia, la energía y la información, y cómo estos conocimientos se aplican en el desarrollo tecnológico que impulsa nuestra sociedad. Este nivel te permitirá comprender los mecanismos subyacentes de los fenómenos naturales y las tecnologías modernas.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Fundamentos de Física y Química ⚛️🔬 - Las Leyes del Universo</h4>
-                            <p class="mb-2">Exploraremos los bloques de construcción del universo y sus interacciones, comprendiendo las leyes fundamentales que gobiernan la materia y la energía, desde lo más pequeño (átomos) hasta lo más grande (movimiento de objetos). Estos fundamentos son la base de todas las ciencias naturales. 🌌</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Materia y Energía:</strong>
-                                <p>Leyes de conservación de la energía (la energía no se crea ni se destruye, solo se transforma de una forma a otra) y la masa (la masa total en un sistema cerrado permanece constante). Diferentes formas de energía (cinética 🏃‍♀️, potencial ⛰️, térmica 🔥, eléctrica ⚡, lumínica, sonora) y cómo se interconvierten. Entender la energía es clave para comprender todos los procesos físicos y químicos.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un coche que sube una colina gana energía potencial (almacenada); al bajar, la convierte en energía cinética (de movimiento). Una bombilla convierte energía eléctrica en lumínica y térmica.</p>
-                            </li>
-                            <li><strong>Átomos y Moléculas:</strong>
-                                <p>La estructura básica de la materia: protones (carga positiva), neutrones (sin carga) en el núcleo, y electrones (carga negativa) orbitando alrededor del núcleo. Cómo los átomos se unen para formar moléculas (enlaces químicos: iónicos, covalentes, metálicos) y una introducción a la tabla periódica de los elementos, que organiza los átomos por sus propiedades químicas y número atómico. Comprender la estructura atómica es fundamental para la química. 🧪</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Una molécula de agua ($\text{H}_2\text{O}$) está formada por dos átomos de hidrógeno y uno de oxígeno unidos por enlaces covalentes. El oxígeno está en el grupo 16 de la tabla periódica.</p>
-                            </li>
-                            <li><strong>Reacciones Químicas:</strong>
-                                <p>Cómo las sustancias se transforman en otras nuevas mediante la ruptura y formación de enlaces químicos. Conceptos de ácidos y bases (sustancias que donan o aceptan protones, respectivamente), y las leyes de conservación de la masa en reacciones químicas (la masa total de los reactivos es igual a la masa total de los productos). Se introducen los conceptos de balanceo de ecuaciones y tipos de reacciones (síntesis, descomposición, etc.).</p>
-                                <p class="mt-2"><em>Ejemplo:</em> La combustión de la madera es una reacción química que produce cenizas, humo y calor. La reacción de un ácido con una base produce sal y agua.</p>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Introducción a la Biología y Ecología 🧬🌳 - La Vida y sus Sistemas</h4>
-                            <p class="mb-2">Comprenderemos los sistemas vivos, desde su unidad más básica (la célula) hasta su interacción compleja con el medio ambiente y otros organismos, formando ecosistemas dinámicos. Este conocimiento es esencial para entender la vida en la Tierra y la sostenibilidad.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>La Célula:</strong>
-                                <p>La unidad estructural y funcional básica de todos los seres vivos. Diferencias entre células procariotas (organismos unicelulares simples sin núcleo definido ni orgánulos membranosos, ej. bacterias) y eucariotas (células más complejas con núcleo definido y orgánulos membranosos, presentes en plantas, animales, hongos y protistas). Sus componentes principales (núcleo, citoplasma, membrana celular, mitocondrias, cloroplastos en plantas, etc.) y sus funciones. 🔬</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Las bacterias son organismos unicelulares procariotas. Las células de tu cuerpo son eucariotas.</p>
-                            </li>
-                            <li><strong>Genética Básica:</strong>
-                                <p>Los principios de la herencia, cómo se transmiten los rasgos de padres a hijos a través de los genes. El papel fundamental del ADN (ácido desoxirribonucleico) como el "código de la vida" que contiene las instrucciones genéticas para construir y mantener un organismo. Se introduce la idea de cromosomas y mutaciones. 🧬</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El color de tus ojos y tu tipo de cabello están determinados por los genes que heredaste de tus padres. Una mutación puede causar un cambio en un rasgo.</p>
-                            </li>
-                            <li><strong>Ecosistemas:</strong>
-                                <p>Las complejas relaciones entre los organismos vivos (productores: plantas; consumidores: herbívoros, carnívoros, omnívoros; descomponedores: bacterias, hongos) y su entorno físico (temperatura, agua, luz solar, suelo, clima). Conceptos como cadenas alimentarias (flujo de energía) y ciclos biogeoquímicos (ej. ciclo del agua, ciclo del carbono, ciclo del nitrógeno), que describen cómo los elementos se reciclan en la naturaleza. 🌍♻️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un bosque es un ecosistema donde los árboles (productores) son comidos por ciervos (consumidores primarios), y los hongos (descomponedores) reciclan la materia orgánica de las hojas caídas.</p>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Conceptos de Tecnología de la Información (TI) 🌐💾 - El Mundo Digital</h4>
-                            <p class="mb-2">Una mirada a cómo las computadoras y las redes procesan y comunican información, sentando las bases para entender el mundo digital que nos rodea y cómo interactuamos con él. La TI es el motor de la sociedad moderna.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Hardware y Software:</strong>
-                                <p>Identificación de los componentes físicos de una computadora (hardware, ej. CPU -unidad central de procesamiento-, memoria RAM, disco duro, tarjeta gráfica, teclado, ratón) y los programas que la hacen funcionar (software, ej. sistema operativo -Windows, macOS-, aplicaciones -Word, Chrome-, juegos). El hardware es el "cuerpo" y el software es el "cerebro" o las "instrucciones". 🖥️💾</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El teclado y el ratón son hardware; Word y Chrome son software. El sistema operativo gestiona el hardware y permite que el software se ejecute.</p>
-                            </li>
-                            <li><strong>Redes e Internet:</strong>
-                                <p>Cómo se conectan los dispositivos para compartir información (redes locales como Wi-Fi y redes globales como Internet). Cómo funciona la World Wide Web (WWW, el sistema de documentos interconectados) y los protocolos básicos de comunicación (HTTP -para páginas web-, TCP/IP -para la transmisión de datos-). Entender las redes es clave para la conectividad global. 📡</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Cuando envías un mensaje por WhatsApp, viaja a través de Internet, usando protocolos de comunicación. Tu casa tiene una red Wi-Fi.</p>
-                            </li>
-                            <li><strong>Ciberseguridad Básica:</strong>
-                                <p>Conceptos fundamentales para proteger datos y privacidad en línea. Incluye la importancia de contraseñas seguras (largas, complejas, únicas), identificación de intentos de phishing (engaño para obtener información personal), y riesgos comunes como virus y malware (software malicioso). La ciberseguridad es vital en un mundo digital. 🔒🛡️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> No abrir correos electrónicos sospechosos o hacer clic en enlaces desconocidos para evitar virus. Usar autenticación de dos factores para mayor seguridad.</p>
-                            </li>
-                            <li><strong>Algoritmos y Programación (Conceptos):</strong>
-                                <p>Introducción a la idea de algoritmos como una secuencia de pasos para resolver un problema. La programación como la forma de dar instrucciones a una computadora para que ejecute un algoritmo. Conceptos básicos como variables, bucles y condicionales. 💻</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un algoritmo para hacer un café: 1. Hervir agua, 2. Añadir café, 3. Añadir azúcar, 4. Servir. Un programa de computadora sigue pasos similares.</p>
-                            </li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Este nivel te proporcionará una comprensión más profunda de los principios científicos y tecnológicos que sustentan nuestro mundo moderno, preparándote para explorar innovaciones y entender el impacto de la ciencia en tu vida. ¡El conocimiento es poder!💡</p>
-                    `,
-                    questions: [
-                        { id: 'cyt_i_q1', text: '¿Cuál es la diferencia entre energía cinética y potencial?', type: 'text', answer: 'Cinética es la energía del movimiento, potencial es la energía almacenada debido a la posición o estado.' },
-                        { id: 'cyt_i_q2', text: 'Menciona un componente principal de la célula eucariota.', type: 'text', answer: 'Núcleo' },
-                        { id: 'cyt_i_q3', text: '¿Qué es un protocolo de comunicación en el contexto de internet?', type: 'text', answer: 'Un conjunto de reglas que permiten a los dispositivos comunicarse entre sí.' },
-                        { id: 'cyt_i_q4', text: '¿Qué significa ADN?', type: 'text', answer: 'Ácido desoxirribonucleico' },
-                        { id: 'cyt_i_q5', text: '¿Qué es el phishing en ciberseguridad?', type: 'text', answer: 'Un intento de obtener información sensible (como nombres de usuario, contraseñas y detalles de tarjetas de crédito) haciéndose pasar por una entidad de confianza en una comunicación electrónica.' },
-                        { id: 'cyt_i_q6', text: '¿Qué ley establece que la energía no se crea ni se destruye, solo se transforma?', type: 'text', answer: 'Ley de conservación de la energía.' },
-                        { id: 'cyt_i_q7', text: 'Menciona los tres componentes básicos de un átomo.', type: 'text', answer: 'Protones, neutrones, electrones.' },
-                        { id: 'cyt_i_q8', text: '¿Qué es una reacción química?', type: 'text', answer: 'Transformación de sustancias en otras nuevas mediante enlaces químicos.' },
-                        { id: 'cyt_i_q9', text: '¿Cuál es la diferencia entre hardware y software?', type: 'text', answer: 'Hardware son componentes físicos, software son programas.' },
-                        { id: 'cyt_i_q10', text: '¿Qué es un ecosistema?', type: 'text', answer: 'Relaciones entre organismos vivos y su entorno físico.' },
-                        { id: 'cyt_i_q11', text: '¿Qué es la tabla periódica de los elementos?', type: 'text', answer: 'Organiza los átomos por sus propiedades.' },
-                        { id: 'cyt_i_q12', text: '¿Qué es la genética?', type: 'text', answer: 'El estudio de la herencia y cómo se transmiten los rasgos.' },
-                        { id: 'cyt_i_q13', text: 'Menciona un ejemplo de ciclo biogeoquímico.', type: 'text', answer: 'Ciclo del agua.' },
-                        { id: 'cyt_i_q14', text: '¿Qué es la World Wide Web (WWW)?', type: 'text', answer: 'Un sistema de documentos interconectados accesibles por Internet.' },
-                        { id: 'cyt_i_q15', text: '¿Por qué son importantes las contraseñas seguras en ciberseguridad?', type: 'text', answer: 'Para proteger datos y privacidad en línea.' },
-                        { id: 'cyt_i_q16', text: '¿Qué tipo de energía se asocia con el movimiento?', type: 'text', answer: 'Cinética' },
-                        { id: 'cyt_i_q17', text: '¿Qué es un enlace químico?', type: 'text', answer: 'La unión de átomos para formar moléculas.' },
-                        { id: 'cyt_i_q18', text: 'Menciona un ejemplo de célula procariota.', type: 'text', answer: 'Bacteria' },
-                        { id: 'cyt_i_q19', text: '¿Qué es un consumidor en un ecosistema?', type: 'text', answer: 'Un organismo que se alimenta de otros organismos.' },
-                        { id: 'cyt_i_q20', text: '¿Qué significa TCP/IP?', type: 'text', answer: 'Protocolos de control de transmisión/Protocolo de Internet.' },
-                    ]
-                },
-                avanzado: {
-                    theory: `
-                        <p class="mb-6">En el nivel Avanzado de Ciencia y Tecnología 🚀🧠, te adentrarás en las fronteras del conocimiento y la innovación, explorando campos emergentes que están redefiniendo el futuro de la humanidad y sus implicaciones éticas y sociales. Este nivel te preparará para comprender y, potencialmente, contribuir a los avances más significativos de nuestra era.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Física Cuántica y Relatividad 🌌⚛️ - Los Misterios del Universo</h4>
-                            <p class="mb-2">Exploración de las teorías revolucionarias que describen el universo a escalas extremadamente pequeñas (cuántica) y extremadamente grandes (relatividad), desafiando nuestra intuición clásica y abriendo nuevas fronteras de la comprensión. Estas teorías son la base de la física moderna y han transformado nuestra visión del cosmos.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Mecánica Cuántica:</strong>
-                                <p>Estudio del comportamiento de la materia y la energía a nivel atómico y subatómico. Conceptos como la dualidad onda-partícula (la luz y la materia pueden comportarse como ondas o partículas, dependiendo de cómo se observen), el principio de incertidumbre de Heisenberg (no se pueden conocer con precisión la posición y el momento de una partícula simultáneamente) y la superposición cuántica (una partícula puede existir en múltiples estados a la vez hasta que es medida). La mecánica cuántica es la base de la electrónica moderna, los láseres y la computación cuántica. 🤯</p>
-                                <p class="mt-2"><em>Ejemplo:</em> El gato de Schrödinger, un experimento mental para ilustrar la superposición. Los electrones en un átomo no tienen una posición fija, sino una probabilidad de estar en diferentes lugares.</p>
-                            </li>
-                            <li><strong>Relatividad de Einstein:</strong>
-                                <p>La teoría de la relatividad especial (la velocidad de la luz en el vacío es constante para todos los observadores, y el tiempo y el espacio son relativos al observador, lo que lleva a fenómenos como la dilatación del tiempo y la contracción de la longitud; famosa ecuación $E=mc^2$, que establece la equivalencia entre masa y energía) y la relatividad general (la gravedad no es una fuerza, sino una curvatura del espacio-tiempo causada por la masa y la energía; predice la existencia de agujeros negros y ondas gravitacionales). Estas teorías han revolucionado nuestra comprensión del espacio, el tiempo y la gravedad. ⏳</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Los relojes en los satélites GPS deben ajustarse por efectos relativistas (dilatación del tiempo) para funcionar con precisión, de lo contrario, habría errores significativos en la ubicación.</p>
-                            </li>
-                            <li><strong>Física de Partículas:</strong> Introducción a las partículas fundamentales del universo (quarks, leptones, bosones) y las fuerzas que las rigen (fuerte, débil, electromagnética, gravitacional), según el Modelo Estándar.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Biotecnología y Genómica 🧬🔬 - Ingenieria de la Vida</h4>
-                            <p class="mb-2">Avances de vanguardia en la manipulación de sistemas biológicos y organismos vivos para aplicaciones prácticas en medicina, agricultura e industria, con un enorme potencial para mejorar la vida humana y resolver desafíos globales. Estos campos están transformando la salud y la producción de alimentos. 🌿💊</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Ingeniería Genética:</strong>
-                                <p>Técnicas para modificar el ADN de organismos, introduciendo, eliminando o alterando genes específicos. Herramientas como CRISPR-Cas9 han revolucionado la edición genética, permitiendo correcciones de defectos genéticos (terapia génica), la creación de organismos con nuevas propiedades (cultivos resistentes a enfermedades) o la investigación de funciones genéticas. La ingeniería genética tiene implicaciones éticas importantes. ✂️🧬</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Modificar genéticamente cultivos para hacerlos resistentes a plagas o sequías, o desarrollar terapias génicas para enfermedades como la fibrosis quística.</p>
-                            </li>
-                            <li><strong>Medicina Personalizada:</strong>
-                                <p>El uso del perfil genético individual de un paciente (genómica) para diseñar tratamientos médicos más efectivos y adaptados, optimizando la eficacia y minimizando los efectos secundarios. Se basa en la idea de que no todos los pacientes responden igual a los mismos tratamientos. Es la promesa de la medicina del futuro, con un enfoque en la prevención y tratamientos a medida. 🧑‍⚕️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Seleccionar el medicamento contra el cáncer más adecuado basándose en el ADN del tumor del paciente, o ajustar la dosis de un fármaco según la capacidad metabólica del individuo.</p>
-                            </li>
-                            <li><strong>Bioinformática:</strong>
-                                <p>La aplicación de la computación y la estadística para analizar grandes volúmenes de datos biológicos (genomas completos, estructuras de proteínas, datos de expresión génica), acelerando descubrimientos en biología y medicina. La bioinformática es esencial para interpretar la vasta cantidad de datos generados por las tecnologías de secuenciación de ADN. 💻📊</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Usar algoritmos para mapear el genoma humano, identificar genes asociados a enfermedades o predecir la función de una proteína a partir de su secuencia.</p>
-                            </li>
-                            <li><strong>Biorremediación:</strong> Uso de organismos vivos (bacterias, hongos, plantas) para eliminar contaminantes del medio ambiente.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Inteligencia Artificial (IA) y Aprendizaje Automático 🤖🧠 - Máquinas que Piensan</h4>
-                            <p class="mb-2">Comprender cómo las máquinas pueden "aprender" de los datos y realizar tareas complejas que tradicionalmente requieren inteligencia humana, y sus profundas implicaciones en la sociedad, la economía y la ética. La IA es una de las tecnologías más transformadoras de nuestro tiempo, con un impacto creciente en todos los aspectos de la vida.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Conceptos de IA y Aprendizaje Automático (Machine Learning - ML):</strong>
-                                <p>Diferencia entre IA débil (especializada en una tarea, ej. jugar ajedrez) y fuerte (inteligencia general, capaz de realizar cualquier tarea intelectual humana). Tipos de aprendizaje automático: supervisado (aprender de datos etiquetados para predecir resultados, ej. clasificación de imágenes), no supervisado (encontrar patrones en datos sin etiquetar, ej. agrupación de clientes) y por refuerzo (aprender a través de ensayo y error en un entorno, ej. robots que aprenden a caminar). Introducción a las redes neuronales y el aprendizaje profundo como modelos inspirados en el cerebro humano, que permiten a las máquinas aprender de forma más compleja. 🧠</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Un sistema de ML supervisado que aprende a clasificar correos electrónicos como spam o no spam basándose en ejemplos previos. Un sistema de aprendizaje por refuerzo que aprende a jugar un videojuego.</p>
-                            </li>
-                            <li><strong>Aplicaciones Avanzadas de IA:</strong>
-                                <p>Procesamiento de lenguaje natural (NLP, para entender y generar lenguaje humano, ej. chatbots, traductores automáticos), visión por computadora (para que las máquinas "vean" e interpreten imágenes y videos, ej. reconocimiento facial, vehículos autónomos), robótica avanzada (robots capaces de interactuar con el mundo físico), sistemas de recomendación (Netflix, Amazon, YouTube) y vehículos autónomos. Estas aplicaciones están transformando industrias enteras. 🚗💬👁️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Traductores automáticos como Google Translate utilizan NLP. Los coches autónomos usan visión por computadora para detectar obstáculos y señales de tráfico.</p>
-                            </li>
-                            <li><strong>Ética de la IA:</strong>
-                                <p>Discusiones sobre el impacto social, moral y filosófico de la IA, incluyendo sesgos algorítmicos (cuando los algoritmos reproducen o amplifican prejuicios existentes en los datos), privacidad de datos (cómo se recopila y usa la información personal), el futuro del empleo (automatización), y la cuestión de la autonomía de las máquinas. Es crucial desarrollar la IA de manera responsable, justa y transparente. ⚖️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Debates sobre si los algoritmos de reconocimiento facial deberían usarse en vigilancia masiva, o cómo asegurar que los sistemas de IA no discriminen a ciertos grupos de personas.</p>
-                            </li>
-                            <li><strong>Computación Cuántica (Conceptos):</strong> Introducción a los principios básicos de la computación cuántica (qubits, superposición, entrelazamiento) y su potencial para resolver problemas que están más allá de las capacidades de las computadoras clásicas.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Este nivel te equipará para comprender y, quizás, contribuir a las innovaciones que definirán el futuro, preparándote para los desafíos y oportunidades de la próxima era tecnológica. ¡El futuro es ahora y la ciencia y la tecnología son sus motores! ✨</p>
-                    `,
-                    questions: [
-                        { id: 'cyt_a_q1', text: 'Explica brevemente el principio de incertidumbre de Heisenberg.', type: 'text', answer: 'No se pueden conocer con precisión la posición y el momento de una partícula simultáneamente.' },
-                        { id: 'cyt_a_q2', text: '¿Qué es CRISPR-Cas9 y para qué se utiliza principalmente?', type: 'text', answer: 'Una herramienta de edición genética que permite modificar el ADN con precisión.' },
-                        { id: 'cyt_a_q3', text: 'Menciona un tipo de aprendizaje automático.', type: 'text', answer: 'Supervisado' },
-                        { id: 'cyt_a_q4', text: '¿Cuál es la ecuación más famosa de Einstein y qué representa?', type: 'text', answer: 'E=mc^2, que representa la equivalencia entre masa y energía.' },
-                        { id: 'cyt_a_q5', text: '¿Qué es la bioinformática?', type: 'text', answer: 'La aplicación de la computación y la estadística para analizar grandes volúmenes de datos biológicos.' },
-                        { id: 'cyt_a_q6', text: '¿Qué es la dualidad onda-partícula en mecánica cuántica?', type: 'text', answer: 'La capacidad de la luz y la materia de comportarse como ondas o partículas.' },
-                        { id: 'cyt_a_q7', text: '¿Qué es la dilatación del tiempo en la relatividad?', type: 'text', answer: 'El fenómeno por el cual el tiempo transcurre de manera diferente para observadores en movimiento relativo o en diferentes campos gravitacionales.' },
-                        { id: 'cyt_a_q8', text: 'Menciona una aplicación de la ingeniería genética en la agricultura.', type: 'text', answer: 'Crear cultivos resistentes a plagas.' },
-                        { id: 'cyt_a_q9', text: '¿Qué es el aprendizaje profundo (deep learning)?', type: 'text', answer: 'Un subcampo del aprendizaje automático que utiliza redes neuronales artificiales con múltiples capas.' },
-                        { id: 'cyt_a_q10', text: '¿Cuál es una preocupación ética importante con la IA?', type: 'text', answer: 'Sesgos algorítmicos.' },
-                        { id: 'cyt_a_q11', text: '¿Qué es un agujero negro según la relatividad general?', type: 'text', answer: 'Una región del espacio-tiempo donde la gravedad es tan fuerte que nada puede escapar.' },
-                        { id: 'cyt_a_q12', text: '¿Qué es la medicina personalizada?', type: 'text', answer: 'Diseñar tratamientos médicos basados en el perfil genético individual del paciente.' },
-                        { id: 'cyt_a_q13', text: '¿Qué es el procesamiento de lenguaje natural (NLP)?', type: 'text', answer: 'Un campo de la IA que permite a las máquinas entender y generar lenguaje humano.' },
-                        { id: 'cyt_a_q14', text: '¿Qué es la superposición cuántica?', type: 'text', answer: 'Una partícula puede estar en múltiples estados a la vez hasta que es observada.' },
-                        { id: 'cyt_a_q15', text: '¿Cómo se utiliza la bioinformática en el mapeo del genoma humano?', type: 'text', answer: 'Utilizando algoritmos para analizar grandes volúmenes de datos genéticos.' },
-                        { id: 'cyt_a_q16', text: 'Menciona una aplicación de la visión por computadora.', type: 'text', answer: 'Reconocimiento facial.' },
-                        { id: 'cyt_a_q17', text: '¿Qué es la IA fuerte?', type: 'text', answer: 'Inteligencia artificial con inteligencia general, similar a la humana.' },
-                        { id: 'cyt_a_q18', text: '¿Qué es la relatividad especial?', type: 'text', answer: 'La teoría de que la velocidad de la luz es constante y el tiempo/espacio son relativos.' },
-                        { id: 'cyt_a_q19', text: '¿Qué es un biomarcador en medicina personalizada?', type: 'text', answer: 'Una característica biológica que puede medirse y que indica un proceso biológico, patogénico o una respuesta a una intervención terapéutica.' },
-                        { id: 'cyt_a_q20', text: '¿Qué es el aprendizaje por refuerzo?', type: 'text', answer: 'Un tipo de aprendizaje automático donde un agente aprende a tomar decisiones a través de ensayo y error en un entorno.' },
-                    ]
-                },
-            },
             ingles: {
                 basico: {
                     theory: `
-                        <p class="mb-6">En el nivel Básico de Inglés 🇬🇧🇺🇸, darás tus primeros pasos para construir una base sólida en el idioma, enfocándote en la comunicación esencial para el día a día. Este nivel te permitirá interactuar en situaciones básicas y comprender mensajes simples.</p>
+                        <p class="mb-6">En el nivel Básico de Inglés 🇬🇧🇺🇸, darás tus primeros pasos para construir una base sólida en el idioma, enfocándote en la comunicación esencial para el día a día.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Fundamentos de Comunicación Oral y Escrita 👋 - Primeras Palabras</h4>
-                            <p class="mb-2">Aprenderás las frases básicas para interactuar en inglés, tanto al hablar como al escribir mensajes sencillos. Es el punto de partida para cualquier conversación y para construir tu confianza en el idioma. 🗣️✍️</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Fundamentos de Comunicación Oral y Escrita 👋</h4>
+                            <p class="mb-2">Aprenderás las frases básicas para interactuar en inglés.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Saludos y Despedidas:</strong>
-                                <p>Frases comunes para iniciar y finalizar interacciones en diferentes momentos del día. "Hello" (hola), "Hi" (hola informal), "Good morning" (buenos días), "Good afternoon" (buenas tardes), "Good evening" (buenas noches al llegar), "Good night" (buenas noches al despedirse), "Goodbye" (adiós), "See you later" (hasta luego), "See you soon" (hasta pronto). Dominar estas frases te permitirá iniciar y cerrar conversaciones de forma natural.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Hello, how are you?" (Hola, ¿cómo estás?) 👋</p>
-                            </li>
-                            <li><strong>Presentación Personal:</strong>
-                                <p>Cómo presentarte a ti mismo y a otros, incluyendo tu nombre, origen y ocupación. "My name is..." (Mi nombre es...), "I am from..." (Soy de...), "Nice to meet you" (Encantado/a de conocerte), "This is..." (Este/a es...). Estas estructuras son fundamentales para las primeras interacciones sociales.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "My name is Ana. Nice to meet you!" (Mi nombre es Ana. ¡Encantado/a de conocerte!) 😊</p>
-                            </li>
-                            <li><strong>Preguntas Básicas:</strong>
-                                <p>Formular y responder preguntas sencillas sobre información personal y preferencias. "¿What is your name?" (¿Cuál es tu nombre?), "¿Where are you from?" (¿De dónde eres?), "¿How old are you?" (¿Cuántos años tienes?), "¿How are you?" (¿Cómo estás?), "¿What is your favorite...?" (¿Cuál es tu... favorito/a?). Estas preguntas te permitirán obtener y dar información básica.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "What is your favorite color?" (¿Cuál es tu color favorito?) 🌈</p>
-                            </li>
+                            <li><strong>Saludos y Despedidas:</strong> Frases comunes para iniciar y finalizar interacciones.</li>
+                            <li><strong>Presentación Personal:</strong> Cómo presentarte a ti mismo y a otros.</li>
+                            <li><strong>Preguntas Básicas:</strong> Formular y responder preguntas sencillas sobre información personal.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Esencial y Comprensión Simple 📖 - Tus Primeras Palabras</h4>
-                            <p class="mb-2">Conocerás palabras y frases comunes para describir tu entorno, personas, objetos y entender instrucciones básicas. Es la base para construir oraciones y comprender el mundo que te rodea en inglés.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Esencial y Comprensión Simple 📖</h4>
+                            <p class="mb-2">Conocerás palabras y frases comunes para describir tu entorno y entender instrucciones básicas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Números:</strong>
-                                <p>Aprender a contar del 1 al 100 y más allá. Esencial para precios, edades, cantidades, direcciones y números de teléfono. "One, two, three...", "Twenty-five", "One hundred", "One thousand". 🔢</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "I am twenty-five years old." (Tengo veinticinco años.)</p>
-                            </li>
-                            <li><strong>Colores:</strong>
-                                <p>Nombres de colores básicos como "red" (rojo), "blue" (azul), "green" (verde), "yellow" (amarillo), "black" (negro), "white" (blanco), "orange" (naranja), "purple" (morado), "pink" (rosa), "brown" (marrón). 🎨</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "The car is red." (El coche es rojo.) 🚗🔴</p>
-                            </li>
-                            <li><strong>Días de la Semana y Meses:</strong>
-                                <p>Aprender los días ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") y los meses ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") para hablar de fechas, horarios y eventos. 🗓️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Today is Friday." (Hoy es viernes.) "My birthday is in August." (Mi cumpleaños es en agosto.)</p>
-                            </li>
-                            <li><strong>Objetos Comunes y Verbos de Acción:</strong>
-                                <p>Vocabulario de objetos cotidianos en casa, escuela o trabajo ("table", "chair", "book", "phone", "computer", "pen", "door", "window") y verbos de acción simples para describir actividades diarias ("eat", "drink", "sleep", "run", "walk", "read", "write", "listen", "speak"). 🛋️📱🏃‍♀️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "I eat an apple." (Yo como una manzana.) 🍎 "She reads a book." (Ella lee un libro.)</p>
-                            </li>
-                            <li><strong>Comprensión Auditiva Básica:</strong>
-                                <p>Entender frases simples, preguntas directas y conversaciones muy lentas y claras. La práctica con audios sencillos, como diálogos de principiantes o canciones infantiles, es clave para desarrollar el oído. 👂</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Escuchar y entender "¿How are you?" y responder "I'm fine, thank you." (Estoy bien, gracias.)</p>
-                            </li>
+                            <li><strong>Números:</strong> Contar del 1 al 100 y más allá.</li>
+                            <li><strong>Colores:</strong> Nombres de colores básicos.</li>
+                            <li><strong>Días de la Semana y Meses:</strong> Aprender los días y los meses.</li>
+                            <li><strong>Objetos Comunes y Verbos de Acción:</strong> Vocabulario de objetos cotidianos y verbos simples.</li>
+                            <li><strong>Comprensión Auditiva Básica:</strong> Entender frases simples y conversaciones lentas.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Estructuras Gramaticales Básicas 🏗️ - Construyendo Oraciones</h4>
-                            <p class="mb-2">Introducción a las estructuras más simples del inglés, que te permitirán formar oraciones coherentes y expresar ideas básicas. Dominar estas estructuras es esencial para la comunicación efectiva.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Estructuras Gramaticales Básicas 🏗️</h4>
+                            <p class="mb-2">Introducción a las estructuras más simples del inglés para formar oraciones coherentes.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Verbo "To Be":</strong>
-                                <p>El verbo más fundamental en inglés, utilizado para describir estados, características, nacionalidades, profesiones, ubicaciones y emociones. Aprender a usar "am" (para I), "is" (para he, she, it) y "are" (para you, we, they) correctamente es crucial. (ej. "I am happy", "She is a student", "They are friends", "He is tall", "We are in the park").</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "He is tall." (Él es alto.) 🧍‍♂️ "I am a teacher." (Soy un/a maestro/a.)</p>
-                            </li>
-                            <li><strong>Pronombres Personales:</strong>
-                                <p>Aprender "I" (yo), "you" (tú/ustedes), "he" (él), "she" (ella), "it" (ello/a para objetos o animales), "we" (nosotros/as), "they" (ellos/as) y su uso correcto como sujetos de la oración. Son esenciales para referirse a personas y cosas sin repetir nombres, haciendo la comunicación más fluida. 🧑‍🤝‍🧑</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "They play soccer." (Ellos juegan fútbol.) ⚽ "It is a dog." (Es un perro.)</p>
-                            </li>
-                            <li><strong>Artículos:</strong>
-                                <p>Aprender a usar "a" (un/una, antes de palabras que empiezan con sonido de consonante), "an" (un/una, antes de palabras que empiezan con sonido de vocal) para sustantivos singulares indeterminados, y "the" (el/la/los/las, para sustantivos específicos o ya mencionados), y cuándo utilizarlos. Son pequeños pero muy importantes para la precisión. 🅰️🅱️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "A cat" (un gato), "an apple" (una manzana), "the sun" (el sol). 🐱🍎☀️</p>
-                            </li>
-                            <li><strong>Formación de Oraciones Simples:</strong>
-                                <p>La estructura básica Sujeto + Verbo + Complemento (SVO - Subject-Verb-Object) es la más común en inglés. (ej. "I eat apples", "She reads a book", "He drinks water"). Practicar la construcción de estas oraciones te dará la base para expresarte. </p>
-                                <p class="mt-2"><em>Ejemplo:</em> "He drinks water." (Él bebe agua.) 💧 "They like pizza." (A ellos les gusta la pizza.)</p>
-                            </li>
-                            <li><strong>Adjetivos y Adverbios Básicos:</strong> Introducción a los adjetivos (describen sustantivos, ej. "big", "happy") y adverbios (describen verbos, adjetivos u otros adverbios, ej. "quickly", "very").</li>
+                            <li><strong>Verbo "To Be":</strong> Uso de "am", "is", "are" para describir estados y características.</li>
+                            <li><strong>Pronombres Personales:</strong> Aprender "I", "you", "he", "she", "it", "we", "they".</li>
+                            <li><strong>Artículos:</strong> Uso de "a", "an", "the".</li>
+                            <li><strong>Formación de Oraciones Simples:</strong> Estructura Sujeto + Verbo + Complemento (SVO).</li>
+                            <li><strong>Adjetivos y Adverbios Básicos:</strong> Introducción a describir sustantivos y verbos.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">La clave en este nivel es la práctica constante y la inmersión en el idioma, incluso con pequeños pasos. ¡No tengas miedo de cometer errores! Son parte del aprendizaje y te ayudarán a mejorar. ¡Disfruta el proceso! 😊</p>
+                        <p class="mt-4">La clave en este nivel es la práctica constante y la inmersión. ¡No tengas miedo de cometer errores! 😊</p>
                     `,
                     questions: [
                         { id: 'i_b_q1', text: 'Completa: "Hello, my name ___ John."', type: 'text', answer: 'is' },
@@ -940,74 +520,38 @@
                 },
                 intermedio: {
                     theory: `
-                        <p class="mb-6">En el nivel Intermedio de Inglés 🗣️📚, expandirás tu vocabulario, dominarás tiempos verbales más complejos y mejorarás tu fluidez para mantener conversaciones más significativas y expresarte con mayor precisión. Este nivel te permitirá interactuar con mayor autonomía en diversas situaciones cotidianas y laborales.</p>
+                        <p class="mb-6">En el nivel Intermedio de Inglés 🗣️📚, expandirás tu vocabulario, dominarás tiempos verbales más complejos y mejorarás tu fluidez.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Dominio de Tiempos Verbales Clave ⏰ - Viajando en el Tiempo</h4>
-                            <p class="mb-2">Aprenderás a expresar acciones en diferentes momentos y con distintos matices, lo cual es fundamental para una comunicación precisa y contextualizada. Esto te permitirá hablar sobre el pasado, el presente y el futuro con mayor detalle. ⏳</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Dominio de Tiempos Verbales Clave ⏰</h4>
+                            <p class="mb-2">Expresar acciones en diferentes momentos y con distintos matices.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Presente Continuo (Present Continuous):</strong>
-                                <p>Para acciones que están ocurriendo ahora mismo (ej. "I am studying English right now" - Estoy estudiando inglés ahora mismo), para planes futuros definidos (ej. "We are meeting tomorrow at 3 PM" - Nos reuniremos mañana a las 3 PM) o para describir tendencias temporales. Se forma con el verbo "to be" (am/is/are) + verbo principal con -ing.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "She is reading a book." (Ella está leyendo un libro.) 📖 "The climate is changing rapidly." (El clima está cambiando rápidamente.)</p>
-                            </li>
-                            <li><strong>Pasado Simple (Simple Past):</strong>
-                                <p>Para acciones terminadas en un momento específico del pasado (ej. "She visited Paris last year" - Ella visitó París el año pasado, "I ate pizza yesterday" - Comí pizza ayer). Se usa con verbos regulares (añadir -ed) e irregulares (que tienen formas especiales, ej. go-went, see-saw, eat-ate). Es fundamental para narrar eventos pasados.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "They played soccer." (Ellos jugaron fútbol.) ⚽ "I went to the cinema last night." (Fui al cine anoche.)</p>
-                            </li>
-                            <li><strong>Futuro Simple (Simple Future - Will / Be Going To):</strong>
-                                <p>Para planes, predicciones y decisiones espontáneas. "Will" se usa para predicciones generales, decisiones tomadas en el momento de hablar, promesas y ofertas (ej. "It will rain tomorrow" - Lloverá mañana, "I'll help you" - Te ayudaré). "Be going to" se usa para planes ya decididos o intenciones, y para predicciones basadas en evidencia presente (ej. "She is going to study medicine" - Ella va a estudiar medicina, "Look at those clouds, it's going to rain" - Mira esas nubes, va a llover). </p>
-                                <p class="mt-2"><em>Ejemplo:</em> "It will rain tomorrow." (Lloverá mañana.) ☔ "I am going to buy a new car next month." (Voy a comprar un coche nuevo el próximo mes.)</p>
-                            </li>
-                            <li><strong>Presente Perfecto (Present Perfect):</strong>
-                                <p>Para acciones que comenzaron en el pasado y continúan en el presente (ej. "I have lived here for five years" - He vivido aquí durante cinco años, y sigo viviendo aquí), o para acciones terminadas en el pasado pero con un resultado o relevancia en el presente (ej. "She has finished her homework" - Ella ha terminado su tarea, la tarea está hecha ahora). Se forma con "have/has" + participio pasado del verbo principal. ✅</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "I have never seen that movie." (Nunca he visto esa película.) 🎬 "He has lost his keys." (Él ha perdido sus llaves - y no las tiene ahora.)</p>
-                            </li>
+                            <li><strong>Presente Continuo:</strong> Acciones ocurriendo ahora o planes futuros.</li>
+                            <li><strong>Pasado Simple:</strong> Acciones terminadas en el pasado.</li>
+                            <li><strong>Futuro Simple (Will / Be Going To):</strong> Planes, predicciones y decisiones espontáneas.</li>
+                            <li><strong>Presente Perfecto:</strong> Acciones que comenzaron en el pasado y continúan o tienen relevancia en el presente.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Funcional y Expresiones Comunes 💬 - Enriquece tu Lenguaje</h4>
-                            <p class="mb-2">Ampliarás tu léxico para hablar sobre temas cotidianos, situaciones específicas y empezar a comprender y usar expresiones idiomáticas, lo que te hará sonar más natural y te permitirá entender mejor a los hablantes nativos. 🗣️</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Funcional y Expresiones Comunes 💬</h4>
+                            <p class="mb-2">Ampliar tu léxico para hablar sobre temas cotidianos y entender expresiones idiomáticas.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Vocabulario de Viajes:</strong>
-                                <p>Frases y términos esenciales para situaciones en aeropuertos ✈️ (check-in, boarding pass, luggage), hoteles 🏨 (reservation, single/double room), pedir direcciones 🗺️ (turn left/right, go straight, landmark), transporte público (bus, train, subway, ticket) y emergencias (emergency, doctor, police). </p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Where is the nearest subway station?" (¿Dónde está la estación de metro más cercana?), "I'd like to check in." (Me gustaría registrarme en el hotel.)</p>
-                            </li>
-                            <li><strong>Compras y Servicios:</strong>
-                                <p>Cómo preguntar precios ("How much is this?"), tallas ("What size is this?", "Do you have this in a larger size?"), describir productos ("It's too big/small", "I'm looking for..."), negociar (Can I get a discount?) y solicitar servicios en tiendas 🛍️🏷️, restaurantes 🍽️ (menu, order, bill), bancos y otros establecimientos.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Do you have this in a larger size?" (¿Tienes esto en una talla más grande?) "I'll have the chicken, please." (Tomaré el pollo, por favor.)</p>
-                            </li>
-                            <li><strong>Salud y Bienestar:</strong>
-                                <p>Vocabulario para describir síntomas ("I have a headache", "I feel sick"), ir al médico 🤒⚕️ (appointment, prescription), hablar sobre hábitos saludables (exercise, healthy food) y emergencias médicas (ambulance, first aid). </p>
-                                <p class="mt-2"><em>Ejemplo:</em> "I have a headache." (Tengo dolor de cabeza.) "I need to see a doctor." (Necesito ver a un médico.)</p>
-                            </li>
-                            <li><strong>Expresiones Idiomáticas Básicas:</strong>
-                                <p>Frases cuyo significado no es literal, pero que son muy comunes en el inglés nativo (ej. "break a leg" - ¡buena suerte!; "it's raining cats and dogs" - está lloviendo a cántaros; "piece of cake" - muy fácil; "hit the road" - ponerse en marcha). Conocerlas te ayudará a entender y sonar más natural. 🌧️🐈🐕</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Don't worry, it's a piece of cake!" (No te preocupes, ¡es pan comido!).</p>
-                            </li>
+                            <li><strong>Vocabulario de Viajes:</strong> Términos esenciales para aeropuertos, hoteles, direcciones.</li>
+                            <li><strong>Compras y Servicios:</strong> Preguntar precios, tallas, describir productos y solicitar servicios.</li>
+                            <li><strong>Salud y Bienestar:</strong> Vocabulario para describir síntomas y hablar con el médico.</li>
+                            <li><strong>Expresiones Idiomáticas Básicas:</strong> Frases comunes cuyo significado no es literal.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Mejora de Habilidades Comunicativas Integradas 👂✍️ - Fluidez y Comprensión</h4>
-                            <p class="mb-2">Enfocarse en la comprensión y producción del idioma de manera más fluida y natural, integrando todas las habilidades (escucha, habla, lectura, escritura) para una comunicación más efectiva. La práctica combinada de estas habilidades acelera el aprendizaje.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Mejora de Habilidades Comunicativas Integradas 👂✍️</h4>
+                            <p class="mb-2">Enfocarse en la comprensión y producción del idioma de manera más fluida y natural.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Comprensión Auditiva (Listening):</strong>
-                                <p>Escuchar podcasts 🎧, noticias sencillas, canciones 🎶, entrevistas y conversaciones cotidianas para mejorar la comprensión de diferentes acentos, velocidades del habla y contextos. La clave es la exposición constante y activa. </p>
-                                <p class="mt-2"><em>Ejemplo:</em> Ver series o películas en inglés con subtítulos en inglés, escuchar la radio en inglés mientras haces otras actividades.</p>
-                            </li>
-                            <li><strong>Expresión Oral (Speaking):</strong>
-                                <p>Participar en debates simples, describir experiencias personales, dar opiniones, hacer preguntas de seguimiento y mantener conversaciones más largas. Practicar la fluidez (hablar sin pausas excesivas) y la pronunciación (articulación clara de sonidos y palabras). Unirse a grupos de conversación o practicar con hablantes nativos es muy útil. 🗣️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Unirse a un club de conversación en inglés, grabar tu propia voz para identificar errores, describir tu día a un amigo en inglés.</p>
-                            </li>
-                            <li><strong>Expresión Escrita (Writing):</strong>
-                                <p>Redactar correos electrónicos, descripciones, historias cortas, diarios, blogs y mensajes coherentes sobre temas familiares y personales. Enfocarse en la claridad, la corrección gramatical y la cohesión de las ideas. La escritura regular ayuda a consolidar el vocabulario y la gramática. 📝</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Escribir un correo electrónico a un amigo describiendo tus vacaciones, mantener un diario personal en inglés.</p>
-                            </li>
-                            <li><strong>Comprensión Lectora (Reading):</strong>
-                                <p>Leer artículos de noticias, blogs, historias cortas, textos adaptados y libros de nivel intermedio para entender la idea principal, los detalles específicos, el vocabulario en contexto y la intención del autor. La lectura amplía tu vocabulario y te expone a diferentes estructuras gramaticales. 👓📚</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Leer noticias en inglés sobre temas de tu interés, leer un libro de ficción adaptado a tu nivel.</p>
-                            </li>
+                            <li><strong>Comprensión Auditiva:</strong> Escuchar podcasts, noticias, canciones para mejorar la comprensión.</li>
+                            <li><strong>Expresión Oral:</strong> Participar en debates simples, describir experiencias, practicar fluidez y pronunciación.</li>
+                            <li><strong>Expresión Escrita:</strong> Redactar correos, descripciones, historias cortas.</li>
+                            <li><strong>Comprensión Lectora:</strong> Leer artículos, blogs, historias cortas para entender ideas y vocabulario.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te permitirá interactuar con mayor confianza y autonomía en situaciones reales, expandiendo tus horizontes de comunicación y abriendo nuevas oportunidades. ¡Sigue practicando y sumérgete en el idioma con curiosidad y perseverancia! 🌊</p>
+                        <p class="mt-4">Este nivel te permitirá interactuar con mayor confianza y autonomía. ¡Sigue practicando! 🌊</p>
                     `,
                     questions: [
                         { id: 'i_i_q1', text: 'Conjuga el verbo "to eat" en pasado simple.', type: 'text', answer: 'ate' },
@@ -1034,77 +578,41 @@
                 },
                 avanzado: {
                     theory: `
-                        <p class="mb-6">En el nivel Avanzado de Inglés 🚀✨, refinarás tu fluidez, precisión y comprensión de matices culturales, preparándote para contextos académicos y profesionales exigentes y para una comunicación sofisticada y matizada. Este nivel te permitirá operar con el inglés a un nivel casi nativo.</p>
+                        <p class="mb-6">En el nivel Avanzado de Inglés 🚀✨, refinarás tu fluidez, precisión y comprensión de matices culturales, preparándote para contextos académicos y profesionales exigentes.</p>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Gramática Avanzada y Estructuras Complejas 🧩 - Precisión y Sofisticación</h4>
-                            <p class="mb-2">Dominarás las estructuras que dan sofisticación y precisión a tu inglés, permitiéndote expresar ideas complejas con claridad y elegancia, como un hablante nativo. Esto es esencial para la escritura académica, presentaciones profesionales y debates complejos. 🧠</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Gramática Avanzada y Estructuras Complejas 🧩</h4>
+                            <p class="mb-2">Dominarás las estructuras que dan sofisticación y precisión a tu inglés.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Voz Pasiva (Passive Voice):</strong>
-                                <p>Uso y cuándo aplicarla para enfatizar la acción o el objeto de la acción, en lugar del agente (quien realiza la acción). Es común en contextos académicos, científicos y formales para mantener la objetividad (ej. "The book was written by..." - El libro fue escrito por..., "Mistakes were made" - Se cometieron errores). Se forma con el verbo "to be" + participio pasado.</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "The experiment was conducted by the students." (El experimento fue conducido por los estudiantes). "The report was submitted yesterday." (El informe fue entregado ayer).</p>
-                            </li>
-                            <li><strong>Discurso Indirecto (Reported Speech):</strong>
-                                <p>Reportar lo que alguien dijo o preguntó sin citar textualmente. Implica ajustar tiempos verbales (hacia el pasado), pronombres y adverbios de tiempo/lugar. Es crucial para narrar conversaciones y reportar información de terceros (ej. "He said he would come" - Él dijo que vendría, "She asked if I was ready" - Ella preguntó si yo estaba listo/a). </p>
-                                <p class="mt-2"><em>Ejemplo:</em> Directo: "I am tired." (Estoy cansado/a.) Indirecto: "He said he was tired." (Él dijo que estaba cansado/a.)</p>
-                            </li>
-                            <li><strong>Condicionales Mixtos e Inversiones:</strong>
-                                <p>Estructuras avanzadas para expresar hipótesis y situaciones complejas que combinan diferentes tiempos condicionales (ej. "If I had studied, I would be happy now" - Si hubiera estudiado, estaría feliz ahora - mezcla de pasado perfecto y condicional simple). Las inversiones (cambiar el orden sujeto-verbo) se usan para énfasis o formalidad, especialmente con adverbios negativos (ej. "Never have I seen such a thing" - Nunca he visto tal cosa, "Had I known..." - Si lo hubiera sabido...).</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Had I known, I would have told you." (Si lo hubiera sabido, te lo habría dicho). "Scarcely had he arrived when the phone rang." (Apenas había llegado cuando sonó el teléfono).</p>
-                            </li>
-                            <li><strong>Frases Nominales y Adjetivales:</strong>
-                                <p>Construir oraciones más densas, precisas y concisas, utilizando cláusulas y frases para añadir detalles y complejidad, lo que mejora la cohesión y la fluidez de tu escritura y habla. Permiten expresar ideas de forma más compacta y sofisticada. ✍️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "The student, who had studied diligently, passed the exam." (El estudiante, que había estudiado diligentemente, aprobó el examen). En lugar de dos oraciones, una más compleja.</p>
-                            </li>
-                            <li><strong>Conjunciones y Conectores Avanzados:</strong> Uso de palabras y frases para unir ideas de forma lógica y fluida (ej. "furthermore", "consequently", "nevertheless", "on the one hand... on the other hand").</li>
+                            <li><strong>Voz Pasiva:</strong> Uso para enfatizar la acción o el objeto.</li>
+                            <li><strong>Discurso Indirecto:</strong> Reportar lo que alguien dijo o preguntó sin citar textualmente.</li>
+                            <li><strong>Condicionales Mixtos e Inversiones:</strong> Estructuras avanzadas para expresar hipótesis y énfasis.</li>
+                            <li><strong>Frases Nominales y Adjetivales:</strong> Construir oraciones más densas y concisas.</li>
+                            <li><strong>Conjunciones y Conectores Avanzados:</strong> Unir ideas de forma lógica y fluida.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Académico y Profesional 💼🎓 - Tu Léxico Especializado</h4>
-                            <p class="mb-2">Adquirirás el léxico necesario para entornos especializados, permitiéndote operar eficazmente en contextos universitarios y laborales, y comprender publicaciones y discusiones complejas. Este vocabulario es clave para la comunicación de alto nivel.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Vocabulario Académico y Profesional 💼🎓</h4>
+                            <p class="mb-2">Adquirirás el léxico necesario para entornos especializados.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Jerga de Negocios (Business Jargon):</strong>
-                                <p>Términos específicos de finanzas 💰 (ROI, balance sheet), marketing 📈 (branding, target audience), gestión (strategy, efficiency), recursos humanos (recruitment, onboarding) y otras áreas corporativas. Esencial para reuniones, presentaciones, informes y documentos de trabajo. </p>
-                                <p class="mt-2"><em>Ejemplo:</em> "ROI (Return on Investment)", "synergy" (sinergia), "bottom line" (resultado final), "core competency" (competencia central).</p>
-                            </li>
-                            <li><strong>Vocabulario Académico (Academic Vocabulary):</strong>
-                                <p>Palabras y frases formales utilizadas en ensayos, investigaciones, presentaciones universitarias, tesis y publicaciones científicas. Es fundamental para la lectura crítica, la escritura académica y la participación en discusiones intelectuales. Incluye términos para argumentar, analizar, comparar y contrastar. 🧑‍🎓</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Furthermore" (además), "consequently" (en consecuencia), "hypothesis" (hipótesis), "empirical evidence" (evidencia empírica), "paradigm" (paradigma), "discourse" (discurso).</p>
-                            </li>
-                            <li><strong>Sinónimos y Antónimos Avanzados:</strong>
-                                <p>Para expresar ideas con mayor precisión, variedad y evitar repeticiones, enriqueciendo tu estilo tanto oral como escrito. Permite elegir la palabra exacta para el matiz deseado. ✍️</p>
-                                <p class="mt-2"><em>Ejemplo:</em> En lugar de siempre decir "good", usar "excellent", "superb", "satisfactory", "commendable". En lugar de "bad", usar "detrimental", "subpar", "abysmal".</p>
-                            </li>
-                            <li><strong>Phrasal Verbs y Collocations:</strong>
-                                <p>Dominar las combinaciones de palabras (verbos frasales como "put off" - posponer; "look up" - buscar información; "get over" - superar; y colocaciones como "make a decision" - tomar una decisión; "take a break" - tomar un descanso; "heavy rain" - lluvia intensa) que son esenciales para la fluidez y la comprensión nativa. Son una parte crucial del inglés coloquial y formal. 🧩</p>
-                                <p class="mt-2"><em>Ejemplo:</em> "Look up" (buscar información), "take a break" (tomar un descanso). "Commit a crime" (cometer un crimen), no "do a crime".</p>
-                            </li>
-                            <li><strong>Modismos y Expresiones Idiomáticas:</strong> Comprender y usar expresiones culturales que no se pueden traducir literalmente (ej. "to bite the bullet", "to hit the nail on the head").</li>
+                            <li><strong>Jerga de Negocios:</strong> Términos específicos de finanzas, marketing, gestión.</li>
+                            <li><strong>Vocabulario Académico:</strong> Palabras formales para ensayos, investigaciones y presentaciones.</li>
+                            <li><strong>Sinónimos y Antónimos Avanzados:</strong> Expresar ideas con mayor precisión y variedad.</li>
+                            <li><strong>Phrasal Verbs y Collocations:</strong> Dominar combinaciones de palabras esenciales para la fluidez.</li>
+                            <li><strong>Modismos y Expresiones Idiomáticas:</strong> Comprender y usar expresiones culturales no literales.</li>
                             </ul>
                         </div>
                         <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Fluidez, Precisión y Comprensión Cultural 🌐🗣️ - La Maestría del Idioma</h4>
-                            <p class="mb-2">Perfeccionarás tu capacidad para comunicarte con naturalidad, entender las sutilezas culturales y participar en discusiones complejas con confianza, como un hablante casi nativo. Este es el nivel de maestría donde el idioma se convierte en una extensión de tu pensamiento.</p>
+                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Fluidez, Precisión y Comprensión Cultural 🌐🗣️</h4>
+                            <p class="mb-2">Perfeccionarás tu capacidad para comunicarte con naturalidad y entender las sutilezas culturales.</p>
                             <ul class="list-disc list-inside ml-4 mb-4">
-                            <li><strong>Pronunciación Avanzada:</strong>
-                                <p>Refinar la entonación (el patrón de subida y bajada del tono de voz), el ritmo (la velocidad y el énfasis), las reducciones (ej. "gonna" por "going to", "wanna" por "want to") y los "linking sounds" (unión de sonidos entre palabras, ej. "an apple" suena como "a napple") para sonar más natural y comprensible. Se busca la inteligibilidad y la naturalidad. 🔊</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Practicar la diferencia entre el sonido de "th" en "think" y "this". Escuchar y repetir frases completas para imitar el ritmo y la entonación nativa.</p>
-                            </li>
-                            <li><strong>Comprensión de Acentos:</strong>
-                                <p>Exposición a y práctica con diferentes acentos nativos (británico 🇬🇧, americano 🇺🇸, australiano 🇦🇺, canadiense, irlandés, etc.) para una comprensión global y adaptabilidad. Esto te permitirá entender a una gama más amplia de hablantes. 🎧</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Escuchar podcasts y ver películas de diferentes países de habla inglesa, prestando atención a las variaciones fonéticas y de vocabulario.</p>
-                            </li>
-                            <li><strong>Debate y Argumentación:</strong>
-                                <p>Participar en discusiones complejas, defender puntos de vista con argumentos sólidos y evidencia, refutar argumentos de manera respetuosa y negociar eficazmente. Implica el uso de lenguaje persuasivo, conectores lógicos y la capacidad de pensar críticamente en el idioma. 🗣️💬</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Debatir sobre el cambio climático, la economía global o temas sociales complejos, presentando y defendiendo tu postura con argumentos bien estructurados.</p>
-                            </li>
-                            <li><strong>Análisis Crítico de Textos:</strong>
-                                <p>Leer y comprender textos complejos, incluyendo literatura (novelas, poesía), artículos científicos, informes de investigación, análisis de noticias y ensayos filosóficos, identificando el tono, el propósito, las ideas principales, los argumentos subyacentes, las sutilezas y las implicaciones culturales. Requiere habilidades de lectura profunda y pensamiento crítico. 👓📖</p>
-                                <p class="mt-2"><em>Ejemplo:</em> Leer un artículo de The Economist o The New York Times y resumir sus puntos clave, analizar el estilo del autor y su postura.</p>
-                            </li>
-                            <li><strong>Escritura Avanzada:</strong> Redactar ensayos persuasivos, informes técnicos, propuestas de investigación, y correspondencia profesional, demostrando un control total de la gramática, el vocabulario y el estilo, y adaptando el registro al propósito y la audiencia.</li>
+                            <li><strong>Pronunciación Avanzada:</strong> Refinar entonación, ritmo, reducciones y "linking sounds".</li>
+                            <li><strong>Comprensión de Acentos:</strong> Exposición y práctica con diferentes acentos nativos.</li>
+                            <li><strong>Debate y Argumentación:</strong> Participar en discusiones complejas, defender puntos de vista.</li>
+                            <li><strong>Análisis Crítico de Textos:</strong> Leer y comprender textos complejos, identificando tono y propósito.</li>
+                            <li><strong>Escritura Avanzada:</strong> Redactar ensayos persuasivos, informes técnicos y correspondencia profesional.</li>
                             </ul>
                         </div>
-                        <p class="mt-4">Este nivel te permitirá usar el inglés con maestría, abriendo un mundo de oportunidades académicas y profesionales, y permitiéndote una inmersión completa en la cultura angloparlante. ¡El mundo es tu escenario y el inglés tu pasaporte! 🌟</p>
+                        <p class="mt-4">Este nivel te permitirá usar el inglés con maestría, abriendo un mundo de oportunidades. ¡El mundo es tu escenario y el inglés tu pasaporte! 🌟</p>
                     `,
                     questions: [
                         { id: 'i_a_q1', text: 'Transforma la siguiente oración a voz pasiva: "The company launched a new product."', type: 'text', answer: 'A new product was launched by the company.' },
@@ -1127,327 +635,6 @@
                         { id: 'i_a_q18', text: '¿Qué significa el phrasal verb "get along with"?', type: 'text', answer: 'Llevarse bien con alguien.' },
                         { id: 'i_a_q19', text: 'Menciona un sinónimo avanzado para "important".', type: 'text', answer: 'Crucial' },
                         { id: 'i_a_q20', text: 'Da un ejemplo de "collocation" con el verbo "make".', type: 'text', answer: 'Make a decision.' },
-                    ]
-                },
-            },
-            arte: {
-                basico: {
-                    theory: `
-                        <p class="mb-6">En el nivel Básico de Arte 🎨, descubrirás los fundamentos visuales y las herramientas esenciales para dar vida a tus ideas. Es el punto de partida para cualquier artista, sentando las bases para la expresión creativa.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Elementos Básicos del Arte 🖌️</h4>
-                            <p class="mb-2">Los elementos básicos son los bloques de construcción de cualquier obra de arte.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Línea:</strong> Es el camino de un punto en movimiento. Puede ser recta, curva, gruesa, fina, etc. Define formas y contornos.</li>
-                                <li><strong>Forma:</strong> Un área bidimensional definida por líneas, colores o texturas. Puede ser geométrica (cuadrado, círculo) u orgánica (formas naturales).</li>
-                                <li><strong>Color:</strong> La percepción visual generada por la luz. Los colores primarios son rojo, azul y amarillo.</li>
-                                <li><strong>Valor:</strong> La claridad u oscuridad de un color o tono. Va del blanco al negro.</li>
-                                <li><strong>Textura:</strong> Cómo se siente o se ve una superficie (suave, áspera, brillante).</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Materiales y Técnicas Fundamentales ✏️</h4>
-                            <p class="mb-2">Conoce las herramientas básicas para empezar a crear.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Lápiz:</strong> Ideal para bocetos, sombreado y dibujo de líneas. Diferentes durezas (H para duro, B para blando).</li>
-                                <li><strong>Carboncillo:</strong> Produce tonos oscuros y suaves, ideal para grandes áreas y efectos dramáticos.</li>
-                                <li><strong>Acuarela:</strong> Pintura transparente a base de agua, permite crear capas y efectos sutiles.</li>
-                                <li><strong>Pincel:</strong> Herramienta esencial para aplicar pintura. Vienen en diversas formas y tamaños.</li>
-                                <li><strong>Papel:</strong> La superficie más común para dibujar y pintar.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">¡Empieza a experimentar con estos conceptos y materiales para liberar tu creatividad! ✨</p>
-                    `,
-                    questions: [
-                        { id: 'arte_b_q1', text: '¿Cuál es el camino de un punto en movimiento en el arte?', type: 'text', answer: 'Línea' },
-                        { id: 'arte_b_q2', text: 'Menciona uno de los colores primarios.', type: 'text', answer: 'Rojo' },
-                        { id: 'arte_b_q3', text: '¿Qué elemento del arte se refiere a la claridad u oscuridad?', type: 'text', answer: 'Valor' },
-                        { id: 'arte_b_q4', text: '¿Qué tipo de forma es un cuadrado?', type: 'text', answer: 'Geométrica' },
-                        { id: 'arte_b_q5', text: '¿Qué material de dibujo produce tonos oscuros y suaves?', type: 'text', answer: 'Carboncillo' },
-                        { id: 'arte_b_q6', text: '¿Cómo se llama la pintura transparente a base de agua?', type: 'text', answer: 'Acuarela' },
-                        { id: 'arte_b_q7', text: '¿Qué herramienta es esencial para aplicar pintura?', type: 'text', answer: 'Pincel' },
-                        { id: 'arte_b_q8', text: '¿Qué tipo de forma es una hoja de árbol?', type: 'text', answer: 'Orgánica' },
-                        { id: 'arte_b_q9', text: 'Menciona otro color primario además del rojo.', type: 'text', answer: 'Azul' },
-                        { id: 'arte_b_q10', text: '¿Qué letra indica un lápiz blando?', type: 'text', answer: 'B' },
-                        { id: 'arte_b_q11', text: '¿Qué es la textura en el arte?', type: 'text', answer: 'Cómo se siente o se ve una superficie.' },
-                        { id: 'arte_b_q12', text: '¿Cuál es la superficie más común para dibujar?', type: 'text', answer: 'Papel' },
-                        { id: 'arte_b_q13', text: '¿Qué se utiliza para definir formas y contornos?', type: 'text', answer: 'Línea' },
-                        { id: 'arte_b_q14', text: '¿Qué es la forma en el arte?', type: 'text', answer: 'Un área bidimensional definida.' },
-                        { id: 'arte_b_q15', text: '¿Qué material de dibujo es ideal para bocetos?', type: 'text', answer: 'Lápiz' },
-                        { id: 'arte_b_q16', text: '¿Qué tipo de arte utiliza la luz para generar percepción visual?', type: 'text', answer: 'Color' },
-                        { id: 'arte_b_q17', text: 'Si un objeto es muy claro, ¿qué valor tiene?', type: 'text', answer: 'Alto' },
-                        { id: 'arte_b_q18', text: '¿Qué tipo de pincel usarías para detalles finos?', type: 'text', answer: 'Fino' },
-                        { id: 'arte_b_q19', text: '¿Qué es un tono en el arte?', type: 'text', answer: 'La claridad u oscuridad de un color.' },
-                        { id: 'arte_b_q20', text: '¿Qué color se obtiene mezclando rojo y azul?', type: 'text', answer: 'Morado' },
-                    ]
-                },
-                intermedio: {
-                    theory: `
-                        <p class="mb-6">En el nivel Intermedio de Arte 🖼️, explorarás cómo crear la ilusión de profundidad y espacio, y profundizarás en la teoría del color para dar más vida a tus obras.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Composición y Perspectiva 📐</h4>
-                            <p class="mb-2">Organiza los elementos para guiar la mirada del espectador y crear profundidad.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Composición:</strong> La organización de los elementos visuales en una obra de arte. Busca equilibrio, ritmo y énfasis.</li>
-                                <li><strong>Regla de los Tercios:</strong> Divide la imagen en nueve secciones iguales con dos líneas horizontales y dos verticales. Colocar elementos importantes en las intersecciones o a lo largo de las líneas crea interés.</li>
-                                <li><strong>Perspectiva Lineal:</strong> Crea la ilusión de profundidad utilizando líneas convergentes que se encuentran en un punto de fuga en el horizonte.</li>
-                                <li><strong>Punto de Fuga:</strong> El punto en el horizonte donde las líneas paralelas parecen encontrarse.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Teoría del Color Avanzada 🌈</h4>
-                            <p class="mb-2">Más allá de los primarios, comprende cómo los colores interactúan.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Colores Complementarios:</strong> Opuestos en la rueda de color (ej. rojo-verde, azul-naranja). Crean alto contraste y vibración.</li>
-                                <li><strong>Colores Análogos:</strong> Adyacentes en la rueda de color (ej. azul, azul-verde, verde). Crean armonía y transiciones suaves.</li>
-                                <li><strong>Temperatura del Color:</strong> Colores cálidos (rojos, naranjas, amarillos) y fríos (azules, verdes, morados). Afectan la sensación y la percepción de distancia.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">¡Aplica estos principios para transformar tus dibujos en obras con mayor impacto visual! 🌟</p>
-                    `,
-                    questions: [
-                        { id: 'arte_i_q1', text: '¿Cómo se llama la organización de los elementos visuales en una obra de arte?', type: 'text', answer: 'Composición' },
-                        { id: 'arte_i_q2', text: '¿Qué regla divide la imagen en nueve secciones para mejorar la composición?', type: 'text', answer: 'Regla de los Tercios' },
-                        { id: 'arte_i_q3', text: '¿Qué tipo de perspectiva utiliza un punto de fuga?', type: 'text', answer: 'Perspectiva Lineal' },
-                        { id: 'arte_i_q4', text: '¿Cómo se llama el punto en el horizonte donde las líneas paralelas parecen encontrarse?', type: 'text', answer: 'Punto de Fuga' },
-                        { id: 'arte_i_q5', text: 'Menciona un par de colores complementarios.', type: 'text', answer: 'Rojo-Verde' },
-                        { id: 'arte_i_q6', text: '¿Qué tipo de colores son adyacentes en la rueda de color?', type: 'text', answer: 'Análogos' },
-                        { id: 'arte_i_q7', text: 'Menciona un color cálido.', type: 'text', answer: 'Rojo' },
-                        { id: 'arte_i_q8', text: '¿Qué sensación crean los colores complementarios?', type: 'text', answer: 'Contraste' },
-                        { id: 'arte_i_q9', text: '¿Qué tipo de colores son el azul, el azul-verde y el verde?', type: 'text', answer: 'Análogos' },
-                        { id: 'arte_i_q10', text: '¿Qué se busca con la composición en el arte?', type: 'text', answer: 'Equilibrio' },
-                        { id: 'arte_i_q11', text: '¿Qué ayuda a crear la ilusión de profundidad en un dibujo?', type: 'text', answer: 'Perspectiva' },
-                        { id: 'arte_i_q12', text: 'Si un artista quiere crear armonía, ¿qué tipo de colores usaría?', type: 'text', answer: 'Análogos' },
-                        { id: 'arte_i_q13', text: '¿Qué efecto tiene la temperatura del color en la percepción de distancia?', type: 'text', answer: 'Afecta la percepción de distancia.' },
-                        { id: 'arte_i_q14', text: '¿Qué color es complementario al azul?', type: 'text', answer: 'Naranja' },
-                        { id: 'arte_i_q15', text: '¿Qué es el horizonte en la perspectiva lineal?', type: 'text', answer: 'La línea donde el cielo y la tierra se encuentran.' },
-                        { id: 'arte_i_q16', text: '¿Qué se logra con la regla de los tercios?', type: 'text', answer: 'Crear interés visual.' },
-                        { id: 'arte_i_q17', text: 'Menciona un color frío.', type: 'text', answer: 'Azul' },
-                        { id: 'arte_i_q18', text: '¿Qué tipo de líneas convergen en un punto de fuga?', type: 'text', answer: 'Paralelas' },
-                        { id: 'arte_i_q19', text: '¿Qué es la temperatura del color?', type: 'text', answer: 'La clasificación de colores en cálidos y fríos.' },
-                        { id: 'arte_i_q20', text: '¿Qué efecto se busca al usar colores complementarios juntos?', type: 'text', answer: 'Vibración' },
-                    ]
-                },
-                avanzado: {
-                    theory: `
-                        <p class="mb-6">En el nivel Avanzado de Arte 🏛️, te sumergirás en el estudio de la figura humana, explorarás el arte digital y aprenderás a analizar y criticar obras de arte con profundidad.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Figura Humana y Retrato 👤</h4>
-                            <p class="mb-2">Dominar la representación del cuerpo y el rostro humano.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Anatomía Artística:</strong> Estudio de la estructura ósea y muscular para dibujar el cuerpo humano de forma realista y dinámica.</li>
-                                <li><strong>Proporciones:</strong> Las relaciones de tamaño entre las diferentes partes del cuerpo o rostro. Por ejemplo, la cabeza es una unidad de medida común.</li>
-                                <li><strong>Retrato:</strong> Representación artística de una persona, enfocándose en las características faciales y la expresión.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Arte Digital y Nuevos Medios 💻</h4>
-                            <p class="mb-2">Explora las herramientas y técnicas del arte en el entorno digital.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Software de Ilustración:</strong> Programas como Adobe Photoshop o Procreate para crear imágenes digitales.</li>
-                                <li><strong>Tableta Gráfica:</strong> Dispositivo de entrada que permite dibujar directamente en la computadora con un lápiz óptico.</li>
-                                <li><strong>Concept Art:</strong> Creación de diseños visuales para personajes, entornos y objetos en videojuegos o películas.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Crítica y Análisis de Arte 🧐</h4>
-                            <p class="mb-2">Desarrolla tu capacidad para interpretar y evaluar obras de arte.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Análisis Formal:</strong> Examinar los elementos (línea, color, forma) y principios (composición, ritmo) del arte en una obra.</li>
-                                <li><strong>Contexto Histórico y Cultural:</strong> Comprender la obra en relación con la época y sociedad en que fue creada.</li>
-                                <li><strong>Interpretación:</strong> Explorar el significado, el mensaje o las emociones que la obra transmite.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">¡Con estas habilidades, podrás no solo crear, sino también apreciar y entender el arte en un nivel más profundo! 🚀</p>
-                    `,
-                    questions: [
-                        { id: 'arte_a_q1', text: '¿Qué estudio ayuda a dibujar el cuerpo humano de forma realista?', type: 'text', answer: 'Anatomía Artística' },
-                        { id: 'arte_a_q2', text: '¿Cómo se llama la relación de tamaño entre las partes del cuerpo?', type: 'text', answer: 'Proporciones' },
-                        { id: 'arte_a_q3', text: '¿Qué tipo de representación artística se enfoca en el rostro?', type: 'text', answer: 'Retrato' },
-                        { id: 'arte_a_q4', text: 'Menciona un software popular para ilustración digital.', type: 'text', answer: 'Adobe Photoshop' },
-                        { id: 'arte_a_q5', text: '¿Qué dispositivo permite dibujar directamente en la computadora con un lápiz óptico?', type: 'text', answer: 'Tableta Gráfica' },
-                        { id: 'arte_a_q6', text: '¿Qué tipo de arte crea diseños visuales para videojuegos o películas?', type: 'text', answer: 'Concept Art' },
-                        { id: 'arte_a_q7', text: '¿Qué se examina en un análisis formal de una obra de arte?', type: 'text', answer: 'Elementos y principios del arte.' },
-                        { id: 'arte_a_q8', text: '¿Qué se debe comprender para analizar el contexto de una obra?', type: 'text', answer: 'Época y sociedad.' },
-                        { id: 'arte_a_q9', text: '¿Qué se explora al interpretar una obra de arte?', type: 'text', answer: 'Significado o emociones.' },
-                        { id: 'arte_a_q10', text: '¿Cuál es una unidad de medida común en proporciones artísticas?', type: 'text', answer: 'Cabeza' },
-                        { id: 'arte_a_q11', text: '¿Qué tipo de músculos son importantes en la anatomía artística?', type: 'text', answer: 'Musculares' },
-                        { id: 'arte_a_q12', text: '¿Qué es un lápiz óptico?', type: 'text', answer: 'Un lápiz para dibujar en tabletas gráficas.' },
-                        { id: 'arte_a_q13', text: '¿Qué se busca al dibujar el cuerpo humano de forma dinámica?', type: 'text', answer: 'Movimiento' },
-                        { id: 'arte_a_q14', text: 'Menciona otro software de ilustración digital además de Photoshop.', type: 'text', answer: 'Procreate' },
-                        { id: 'arte_a_q15', text: '¿Qué aspecto de la obra de arte se evalúa en la crítica?', type: 'text', answer: 'Calidad o impacto.' },
-                        { id: 'arte_a_q16', text: '¿Qué tipo de estructura es fundamental en la anatomía artística?', type: 'text', answer: 'Ósea' },
-                        { id: 'arte_a_q17', text: '¿Qué es la expresión en un retrato?', type: 'text', answer: 'La emoción o el estado de ánimo del sujeto.' },
-                        { id: 'arte_a_q18', text: '¿Qué son los nuevos medios en el arte?', type: 'text', answer: 'Formas de arte que utilizan tecnología digital.' },
-                        { id: 'arte_a_q19', text: '¿Qué se considera al analizar el contexto cultural de una obra?', type: 'text', answer: 'Las costumbres o creencias de la sociedad.' },
-                        { id: 'arte_a_q20', text: '¿Qué es la crítica de arte?', type: 'text', answer: 'El análisis y evaluación de obras de arte.' },
-                    ]
-                },
-            },
-            computo: { // New Computo Course
-                basico: {
-                    theory: `
-                        <p class="mb-6">En el nivel Básico de Cómputo 💻, te familiarizarás con los componentes fundamentales de una computadora y cómo interactúan para realizar tareas básicas. Este nivel es esencial para entender el funcionamiento de los dispositivos que usamos a diario.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Componentes de Hardware 🖥️</h4>
-                            <p class="mb-2">El hardware se refiere a todas las partes físicas de una computadora.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>CPU (Unidad Central de Procesamiento):</strong> El "cerebro" de la computadora, encargado de ejecutar instrucciones y procesar datos.</li>
-                                <li><strong>RAM (Memoria de Acceso Aleatorio):</strong> Memoria temporal donde se almacenan los datos y programas que se están utilizando activamente. Es volátil.</li>
-                                <li><strong>Almacenamiento (Disco Duro/SSD):</strong> Dispositivo donde se guardan permanentemente los archivos y el sistema operativo.</li>
-                                <li><strong>Dispositivos de Entrada:</strong> Permiten introducir información a la computadora (teclado, ratón, micrófono).</li>
-                                <li><strong>Dispositivos de Salida:</strong> Muestran o entregan información de la computadora (monitor, impresora, altavoces).</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Software Básico 💾</h4>
-                            <p class="mb-2">El software son los programas y aplicaciones que hacen funcionar el hardware.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Sistema Operativo (OS):</strong> Programa principal que gestiona el hardware y el software (Windows, macOS, Linux).</li>
-                                <li><strong>Aplicaciones:</strong> Programas diseñados para tareas específicas (navegadores web, procesadores de texto, juegos).</li>
-                                <li><strong>Archivos y Carpetas:</strong> Cómo se organiza la información digital en la computadora.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Comprender estos conceptos te dará una base sólida para interactuar con cualquier sistema informático. ¡A seguir explorando! ✨</p>
-                    `,
-                    questions: [
-                        { id: 'computo_b_q1', text: '¿Cuál es el "cerebro" de la computadora?', type: 'text', answer: 'CPU' },
-                        { id: 'computo_b_q2', text: '¿Dónde se almacenan los datos temporalmente mientras se usan?', type: 'text', answer: 'RAM' },
-                        { id: 'computo_b_q3', text: 'Menciona un dispositivo de entrada.', type: 'text', answer: 'Teclado' },
-                        { id: 'computo_b_q4', text: 'Menciona un dispositivo de salida.', type: 'text', answer: 'Monitor' },
-                        { id: 'computo_b_q5', text: '¿Qué tipo de memoria es volátil?', type: 'text', answer: 'RAM' },
-                        { id: 'computo_b_q6', text: '¿Qué programa principal gestiona el hardware y el software?', type: 'text', answer: 'Sistema Operativo' },
-                        { id: 'computo_b_q7', text: 'Menciona un ejemplo de sistema operativo.', type: 'text', answer: 'Windows' },
-                        { id: 'computo_b_q8', text: '¿Qué son los programas diseñados para tareas específicas?', type: 'text', answer: 'Aplicaciones' },
-                        { id: 'computo_b_q9', text: '¿Dónde se guardan permanentemente los archivos?', type: 'text', answer: 'Disco Duro' },
-                        { id: 'computo_b_q10', text: '¿Qué es el hardware?', type: 'text', answer: 'Partes físicas de la computadora' },
-                        { id: 'computo_b_q11', text: '¿Qué es el software?', type: 'text', answer: 'Programas y aplicaciones' },
-                        { id: 'computo_b_q12', text: '¿Qué significa CPU?', type: 'text', answer: 'Unidad Central de Procesamiento' },
-                        { id: 'computo_b_q13', text: '¿Qué significa RAM?', type: 'text', answer: 'Memoria de Acceso Aleatorio' },
-                        { id: 'computo_b_q14', text: '¿Cómo se organiza la información digital?', type: 'text', answer: 'Archivos y Carpetas' },
-                        { id: 'computo_b_q15', text: 'Menciona un ejemplo de aplicación.', type: 'text', answer: 'Navegador web' },
-                        { id: 'computo_b_q16', text: '¿Es un ratón un dispositivo de entrada o salida?', type: 'text', answer: 'Entrada' },
-                        { id: 'computo_b_q17', text: '¿Es una impresora un dispositivo de entrada o salida?', type: 'text', answer: 'Salida' },
-                        { id: 'computo_b_q18', text: '¿Qué tipo de almacenamiento es más rápido, HDD o SSD?', type: 'text', answer: 'SSD' },
-                        { id: 'computo_b_q19', text: '¿Qué es un archivo?', type: 'text', answer: 'Un conjunto de datos guardados.' },
-                        { id: 'computo_b_q20', text: '¿Qué es una carpeta?', type: 'text', answer: 'Un contenedor para organizar archivos.' },
-                    ]
-                },
-                intermedio: {
-                    theory: `
-                        <p class="mb-6">En el nivel Intermedio de Cómputo 🌐, explorarás cómo las computadoras se conectan y comunican, entenderás los conceptos básicos de la programación y aprenderás a proteger tu información en el mundo digital.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Redes y Conectividad 📡</h4>
-                            <p class="mb-2">Cómo las computadoras se comunican entre sí.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Redes Locales (LAN):</strong> Conexión de computadoras en un área pequeña (casa, oficina).</li>
-                                <li><strong>Internet:</strong> Red global de computadoras que permite el intercambio de información a gran escala.</li>
-                                <li><strong>World Wide Web (WWW):</strong> Sistema de documentos interconectados accesibles a través de Internet (páginas web).</li>
-                                <li><strong>Navegadores Web:</strong> Software para acceder y visualizar páginas web (Chrome, Firefox).</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Fundamentos de Programación ✍️</h4>
-                            <p class="mb-2">Las bases para dar instrucciones a una computadora.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Algoritmo:</strong> Una secuencia de pasos lógicos para resolver un problema.</li>
-                                <li><strong>Lenguaje de Programación:</strong> Un lenguaje formal para escribir instrucciones que una computadora puede entender (Python, JavaScript).</li>
-                                <li><strong>Variables:</strong> Espacios de memoria para almacenar datos que pueden cambiar.</li>
-                                <li><strong>Condicionales (If/Else):</strong> Estructuras que permiten al programa tomar decisiones basadas en condiciones.</li>
-                                <li><strong>Bucles (Loops):</strong> Estructuras que repiten un bloque de código varias veces.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Ciberseguridad Básica 🔒</h4>
-                            <p class="mb-2">Proteger tu información y dispositivos en línea.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Contraseñas Seguras:</strong> Largas, complejas y únicas para cada cuenta.</li>
-                                <li><strong>Phishing:</strong> Intentos de engaño para obtener información personal (correos falsos).</li>
-                                <li><strong>Malware (Virus, Troyanos):</strong> Software malicioso que daña o roba información.</li>
-                                <li><strong>Antivirus:</strong> Software para detectar y eliminar malware.</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Estos conocimientos te permitirán navegar el mundo digital con mayor seguridad y empezar a entender cómo se construyen las aplicaciones. ¡Sigue aprendiendo! 🚀</p>
-                    `,
-                    questions: [
-                        { id: 'computo_i_q1', text: '¿Qué tipo de red conecta computadoras en un área pequeña?', type: 'text', answer: 'LAN' },
-                        { id: 'computo_i_q2', text: '¿Cómo se llama la red global de computadoras?', type: 'text', answer: 'Internet' },
-                        { id: 'computo_i_q3', text: 'Menciona un navegador web.', type: 'text', answer: 'Chrome' },
-                        { id: 'computo_i_q4', text: '¿Qué es una secuencia de pasos lógicos para resolver un problema?', type: 'text', answer: 'Algoritmo' },
-                        { id: 'computo_i_q5', text: 'Menciona un lenguaje de programación.', type: 'text', answer: 'Python' },
-                        { id: 'computo_i_q6', text: '¿Qué son los espacios de memoria para almacenar datos que pueden cambiar?', type: 'text', answer: 'Variables' },
-                        { id: 'computo_i_q7', text: '¿Qué estructura permite al programa tomar decisiones?', type: 'text', answer: 'Condicionales' },
-                        { id: 'computo_i_q8', text: '¿Qué estructura repite un bloque de código varias veces?', type: 'text', answer: 'Bucles' },
-                        { id: 'computo_i_q9', text: '¿Cómo deben ser las contraseñas para ser seguras?', type: 'text', answer: 'Largas, complejas y únicas' },
-                        { id: 'computo_i_q10', text: '¿Qué es el phishing?', type: 'text', answer: 'Intentos de engaño para obtener información personal.' },
-                        { id: 'computo_i_q11', text: '¿Qué es el malware?', type: 'text', answer: 'Software malicioso.' },
-                        { id: 'computo_i_q12', text: '¿Qué software detecta y elimina malware?', type: 'text', answer: 'Antivirus' },
-                        { id: 'computo_i_q13', text: '¿Qué significa WWW?', type: 'text', answer: 'World Wide Web' },
-                        { id: 'computo_i_q14', text: '¿Qué es un lenguaje de programación?', type: 'text', answer: 'Un lenguaje para escribir instrucciones para computadoras.' },
-                        { id: 'computo_i_q15', text: '¿Qué tipo de red es la que usas en casa?', type: 'text', answer: 'LAN' },
-                        { id: 'computo_i_q16', text: 'Si un programa necesita elegir entre dos caminos, ¿qué estructura usaría?', type: 'text', answer: 'Condicional' },
-                        { id: 'computo_i_q17', text: 'Si quieres que una acción se repita 100 veces, ¿qué usarías?', type: 'text', answer: 'Bucle' },
-                        { id: 'computo_i_q18', text: '¿Qué tipo de ataque de ciberseguridad llega por correo electrónico?', type: 'text', answer: 'Phishing' },
-                        { id: 'computo_i_q19', text: '¿Qué es un troyano en ciberseguridad?', type: 'text', answer: 'Un tipo de malware que se disfraza de software legítimo.' },
-                        { id: 'computo_i_q20', text: '¿Cuál es el objetivo principal de la ciberseguridad?', type: 'text', answer: 'Proteger datos y privacidad.' },
-                    ]
-                },
-                avanzado: {
-                    theory: `
-                        <p class="mb-6">En el nivel Avanzado de Cómputo 🧠, te adentrarás en conceptos más complejos que impulsan la tecnología moderna, desde cómo se almacena y gestiona la información a gran escala hasta los principios de la inteligencia artificial y el desarrollo web.</p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">1. Gestión de Datos y Cloud Computing ☁️</h4>
-                            <p class="mb-2">Cómo se manejan grandes volúmenes de información y se accede a servicios a través de Internet.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Bases de Datos:</strong> Sistemas organizados para almacenar, gestionar y recuperar grandes cantidades de datos de forma eficiente.</li>
-                                <li><strong>SQL (Structured Query Language):</strong> Lenguaje estándar para interactuar con bases de datos relacionales (consultar, insertar, actualizar, eliminar datos).</li>
-                                <li><strong>Cloud Computing:</strong> Entrega de servicios informáticos (servidores, almacenamiento, bases de datos, redes, software, análisis) a través de Internet ("la nube"), en lugar de tenerlos físicamente en tu ubicación.</li>
-                                <li><strong>Big Data:</strong> Conjuntos de datos tan grandes y complejos que las aplicaciones de procesamiento de datos tradicionales no pueden manejarlos. Requiere herramientas y técnicas especiales para su análisis.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">2. Desarrollo Web y Diseño 🌐</h4>
-                            <p class="mb-2">Los fundamentos para crear sitios web y aplicaciones interactivas.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>HTML (HyperText Markup Language):</strong> Lenguaje para estructurar el contenido de las páginas web (títulos, párrafos, imágenes, enlaces).</li>
-                                <li><strong>CSS (Cascading Style Sheets):</strong> Lenguaje para dar estilo a las páginas web (colores, fuentes, diseño, animaciones).</li>
-                                <li><strong>JavaScript (JS):</strong> Lenguaje de programación que añade interactividad y dinamismo a las páginas web (formularios, animaciones, lógica del lado del cliente).</li>
-                                <li><strong>Frameworks Web (Concepto):</strong> Colecciones de herramientas y bibliotecas preescritas que facilitan el desarrollo web (ej. React, Angular, Vue.js para frontend; Node.js, Django para backend).</li>
-                            </ul>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-6 shadow-sm">
-                            <h4 class="text-blue-800 text-xl font-semibold mb-3">3. Inteligencia Artificial y Ciencia de Datos 🤖📊</h4>
-                            <p class="mb-2">Cómo las máquinas aprenden y se utilizan los datos para obtener información valiosa.</p>
-                            <ul class="list-disc list-inside ml-4 mb-4">
-                                <li><strong>Inteligencia Artificial (IA):</strong> Campo de la ciencia de la computación que busca crear máquinas que puedan realizar tareas que requieren inteligencia humana.</li>
-                                <li><strong>Aprendizaje Automático (Machine Learning - ML):</strong> Un subcampo de la IA que permite a los sistemas aprender de los datos sin ser programados explícitamente.</li>
-                                <li><strong>Análisis de Datos:</strong> Proceso de examinar, limpiar, transformar y modelar datos para descubrir información útil, informar conclusiones y apoyar la toma de decisiones.</li>
-                                <li><strong>Ética de la IA:</strong> Consideraciones morales y sociales sobre el desarrollo y uso de la inteligencia artificial (sesgos, privacidad, impacto en el empleo).</li>
-                            </ul>
-                        </div>
-                        <p class="mt-4">Estos temas te abrirán las puertas a los campos más innovadores de la tecnología. ¡El futuro está en tus manos! 🚀</p>
-                    `,
-                    questions: [
-                        { id: 'computo_a_q1', text: '¿Qué es SQL?', type: 'text', answer: 'Lenguaje estándar para interactuar con bases de datos relacionales.' },
-                        { id: 'computo_a_q2', text: '¿Qué es el Cloud Computing?', type: 'text', answer: 'Entrega de servicios informáticos a través de Internet.' },
-                        { id: 'computo_a_q3', text: '¿Para qué se utiliza HTML en el desarrollo web?', type: 'text', answer: 'Estructurar el contenido de las páginas web.' },
-                        { id: 'computo_a_q4', text: '¿Para qué se utiliza CSS en el desarrollo web?', type: 'text', answer: 'Dar estilo a las páginas web.' },
-                        { id: 'computo_a_q5', text: '¿Qué lenguaje de programación añade interactividad a las páginas web?', type: 'text', answer: 'JavaScript' },
-                        { id: 'computo_a_q6', text: '¿Qué es el Aprendizaje Automático (Machine Learning)?', type: 'text', answer: 'Un subcampo de la IA que permite a los sistemas aprender de los datos.' },
-                        { id: 'computo_a_q7', text: '¿Qué es una base de datos?', type: 'text', answer: 'Sistema organizado para almacenar y gestionar datos.' },
-                        { id: 'computo_a_q8', text: 'Menciona un ejemplo de servicio de Cloud Computing.', type: 'text', answer: 'Almacenamiento en la nube.' },
-                        { id: 'computo_a_q9', text: '¿Qué significa la sigla "IA"?', type: 'text', answer: 'Inteligencia Artificial' },
-                        { id: 'computo_a_q10', text: '¿Qué son los "Big Data"?', type: 'text', answer: 'Conjuntos de datos tan grandes y complejos que requieren herramientas especiales.' },
-                        { id: 'computo_a_q11', text: 'Menciona un framework web para frontend.', type: 'text', answer: 'React' },
-                        { id: 'computo_a_q12', text: '¿Qué es el Análisis de Datos?', type: 'text', answer: 'Proceso de examinar datos para descubrir información útil.' },
-                        { id: 'computo_a_q13', text: '¿Cuál es una preocupación ética de la IA?', type: 'text', answer: 'Sesgos algorítmicos.' },
-                        { id: 'computo_a_q14', text: '¿Qué tipo de base de datos se consulta con SQL?', type: 'text', answer: 'Relacionales' },
-                        { id: 'computo_a_q15', text: '¿Qué permite hacer JavaScript en una página web?', type: 'text', answer: 'Añadir interactividad.' },
-                        { id: 'computo_a_q16', text: '¿Qué es un framework web?', type: 'text', answer: 'Colección de herramientas y bibliotecas preescritas.' },
-                        { id: 'computo_a_q17', text: '¿Qué es el backend en desarrollo web?', type: 'text', answer: 'La parte del sitio web que no es visible para el usuario, donde se procesa la lógica y los datos.' },
-                        { id: 'computo_a_q18', text: '¿Qué es el frontend en desarrollo web?', type: 'text', answer: 'La parte del sitio web con la que el usuario interactúa directamente.' },
-                        { id: 'computo_a_q19', text: '¿Qué es la ciencia de datos?', type: 'text', answer: 'Un campo interdisciplinario que utiliza métodos científicos, procesos, algoritmos y sistemas para extraer conocimiento o ideas de datos estructurados y no estructurados.' },
-                        { id: 'computo_a_q20', text: 'Menciona un beneficio del Cloud Computing.', type: 'text', answer: 'Acceso a servicios desde cualquier lugar.' },
                     ]
                 },
             },
@@ -1492,7 +679,10 @@
                     questions.forEach(question => {
                         const feedbackElement = document.getElementById(`feedback-${question.id}`);
                         const inputField = document.getElementById(`q-${question.id}`);
-                        if (feedbackElement) feedbackElement.classList.add('hidden');
+                        if (feedbackElement) {
+                            feedbackElement.classList.add('hidden');
+                            feedbackElement.classList.remove('feedback-animation');
+                        }
                         if (inputField) {
                             inputField.classList.remove('border-green-500', 'focus:ring-green-300', 'border-red-500', 'focus:ring-red-300');
                             inputField.classList.add('border-gray-300', 'focus:border-blue-500', 'focus:ring-blue-300');
@@ -1534,6 +724,7 @@
                         feedbackElement.classList.add('text-red-600');
                     }
                     feedbackElement.classList.remove('hidden');
+                    feedbackElement.classList.add('feedback-animation'); // Add animation class
                 });
 
                 score = correctCount;
@@ -1550,9 +741,18 @@
         };
 
         const renderCourseDetail = (course) => {
-            const currentLevelContent = courseContent[course.id][selectedLevel];
             const appDiv = document.getElementById('app');
             appDiv.innerHTML = '';
+
+            // Handle external link for Minijuegos
+            if (course.isExternal) {
+                window.open(course.url, '_blank');
+                selectedCourse = null; // Reset selected course to return to main page
+                renderApp();
+                return;
+            }
+
+            const currentLevelContent = courseContent[course.id][selectedLevel];
 
             const detailDiv = document.createElement('div');
             detailDiv.className = "bg-white p-10 rounded-3xl shadow-2xl w-full max-w-4xl border border-blue-100";
@@ -1572,7 +772,7 @@
             detailDiv.appendChild(backButton);
 
             const title = document.createElement('h2');
-            title.className = "text-5xl font-extrabold text-blue-900 mb-6 leading-tight";
+            title.className = "text-5xl font-extrabold text-blue-900 mb-6 leading-tight gradient-text from-blue-700 to-indigo-700 shadow-text-dark";
             title.textContent = course.name;
             detailDiv.appendChild(title);
 
@@ -1588,8 +788,8 @@
                 button.textContent = level.charAt(0).toUpperCase() + level.slice(1);
                 button.className = `px-6 py-3 rounded-full text-lg font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4
                     ${selectedLevel === level
-                        ? 'bg-blue-600 text-white shadow-md focus:ring-blue-300'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-300'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md focus:ring-blue-300'
+                        : 'bg-gray-200 text-gray-700 hover:bg-blue-200 hover:text-blue-800 focus:ring-gray-300'
                     }`;
                 button.addEventListener('click', () => {
                     selectedLevel = level;
@@ -1600,9 +800,9 @@
             detailDiv.appendChild(levelButtonsContainer);
 
             const theorySection = document.createElement('div');
-            theorySection.className = "bg-blue-50 p-8 rounded-2xl text-gray-800 border-2 border-blue-200 text-lg leading-relaxed theory-content shadow-inner";
+            theorySection.className = "bg-blue-50 p-8 rounded-2xl text-gray-800 border-2 border-blue-200 text-lg leading-relaxed theory-content shadow-lg";
             theorySection.innerHTML = `
-                <h3 class="text-2xl font-bold text-blue-800 mb-4">Teoría del Curso - Nivel ${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)}</h3>
+                <h3 class="text-2xl font-bold text-blue-800 mb-4 gradient-text from-blue-600 to-sky-600 shadow-text-light">Teoría del Curso - Nivel ${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)}</h3>
                 ${currentLevelContent.theory}
             `;
             detailDiv.appendChild(theorySection);
@@ -1617,8 +817,8 @@
         const renderCourseCards = () => {
             const appDiv = document.getElementById('app');
             appDiv.innerHTML = `
-                <h1 class="text-6xl font-extrabold text-center text-gray-900 mb-16 drop-shadow-lg leading-tight">
-                    <span class="text-blue-600">Chisfuerzo:</span> <span class="text-sky-600">Aprende</span> y <span class="text-indigo-600">Crece</span>
+                <h1 class="text-6xl font-extrabold text-center text-gray-900 mb-16 drop-shadow-lg leading-tight gradient-text from-blue-600 to-indigo-600 shadow-text-dark">
+                    <span class="from-blue-600 to-sky-600">Chisfuerzo:</span> <span class="from-sky-600 to-indigo-600">Aprende</span> y <span class="from-indigo-600 to-purple-600">Crece</span>
                 </h1>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10" id="course-cards-container"></div>
             `;
@@ -1626,22 +826,20 @@
 
             courses.forEach(course => {
                 const cardDiv = document.createElement('div');
-                cardDiv.className = "bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 flex flex-col items-center text-center border-2 border-blue-100 hover:border-blue-300";
+                cardDiv.className = "card-div bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 flex flex-col items-center text-center border-2 border-blue-100 hover:border-blue-300";
                 cardDiv.innerHTML = `
-                    <div class="text-6xl mb-5 text-blue-700">
+                    <div class="card-icon text-blue-700">
                         ${course.id === 'matematicas' ? '➕' : ''}
                         ${course.id === 'comunicacion' ? '🗣️' : ''}
-                        ${course.id === 'cyt' ? '🔬' : ''}
                         ${course.id === 'ingles' ? '🇬🇧' : ''}
-                        ${course.id === 'arte' ? '🎨' : ''}
-                        ${course.id === 'computo' ? '💻' : ''}
+                        ${course.id === 'minijuegos' ? '🎮' : ''}
                     </div>
                     <h3 class="text-3xl font-bold text-gray-900 mb-3">${course.name}</h3>
                     <p class="text-gray-600 text-base leading-relaxed">${course.description}</p>
                 `;
                 cardDiv.addEventListener('click', () => {
                     selectedCourse = course;
-                    selectedLevel = 'basico';
+                    selectedLevel = 'basico'; // Default to basic, but for external links it won't matter
                     renderApp();
                 });
                 courseCardsContainer.appendChild(cardDiv);
